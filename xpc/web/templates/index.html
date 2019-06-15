@@ -1,0 +1,361 @@
+{% extends "base.html" %}
+{% block title%}作品首页-新片场{% endblock %}
+{% block content %}
+<div class="channel-container">
+    <!-- 通栏广告 -->
+    <!-- <a class="create-man-banner" href="/activity/filmfest/ts-proposition?utm_source=xpcWeb&utm_medium=tonglan" target="_blank"><img src="https://oss-xpc0.xpccdn.com/Upload/edu/2018/10/095bbc471ee8871.jpg"></a> -->
+    <div class="choose-bar-v3">
+        <div class="choose-bar-top">
+
+            <ul class="first-type fs_12 c_b_3 fw_300 clearfix">
+                <li class="selected"><a
+                        href="/channel/index/id-0/sort-like/duration_type-0/resolution_type-/type-?from=articleListPage">全部作品</a>
+                </li>
+                <li><a href="/channel/index/id-1/sort-like/duration_type-0/resolution_type-/type-?from=articleListPage">广告</a>
+                </li>
+                <li>
+                    <a href="/channel/index/id-16/sort-like/duration_type-0/resolution_type-/type-?from=articleListPage">宣传片</a>
+                </li>
+                <li>
+                    <a href="/channel/index/id-27/sort-like/duration_type-0/resolution_type-/type-?from=articleListPage">MV</a>
+                </li>
+                <li>
+                    <a href="/channel/index/id-29/sort-like/duration_type-0/resolution_type-/type-?from=articleListPage">系列短视频</a>
+                </li>
+                <li>
+                    <a href="/channel/index/id-31/sort-like/duration_type-0/resolution_type-/type-?from=articleListPage">剧情短片</a>
+                </li>
+                <li>
+                    <a href="/channel/index/id-49/sort-like/duration_type-0/resolution_type-/type-?from=articleListPage">纪录</a>
+                </li>
+                <li>
+                    <a href="/channel/index/id-61/sort-like/duration_type-0/resolution_type-/type-?from=articleListPage">特殊摄影</a>
+                </li>
+                <li>
+                    <a href="/channel/index/id-69/sort-like/duration_type-0/resolution_type-/type-?from=articleListPage">动画</a>
+                </li>
+                <li>
+                    <a href="/channel/index/id-76/sort-like/duration_type-0/resolution_type-/type-?from=articleListPage">创意混剪</a>
+                </li>
+                <li>
+                    <a href="/channel/index/id-81/sort-like/duration_type-0/resolution_type-/type-?from=articleListPage">影视</a>
+                </li>
+                <li>
+                    <a href="/channel/index/id-129/sort-like/duration_type-0/resolution_type-/type-?from=articleListPage">Vlog</a>
+                </li>
+                <li><a href="/channel/index/type-newera/sort-like?from=articleListPage">NEW ERA</a></li>
+            </ul>
+        </div>
+        <div class="choose-bar-bottom clearfix">
+            <ul class="sort-type fs_12 fw_300 c_b_3 clearfix">
+                <li class="selected"><a class="icon-hot" href="javascript:;">热门</a></li>
+                <li><a class="icon-choice"
+                       href="/channel/index/id-0/sort-pick/type-/duration_type-0/resolution_type-?from=articleListPage">精选</a>
+                </li>
+                <li><a class="icon-time"
+                       href="/channel/index/id-0/sort-addtime/type-/duration_type-0/resolution_type-?from=articleListPage">最新</a>
+                </li>
+            </ul>
+            <ul class="detail-type fs_12 fw_300 c_b_3 clearfix">
+                <li class="icon-arrow-down duration-item">
+					<span>
+					作品时长																														</span>
+                    <div class="common-hover-wrap">
+                        <div class="hover-box">
+                            <ul class="list durationList">
+                                <li class="selected"><a href="javascript:;">全部</a></li>
+                                <li>
+                                    <a href="/channel/index/id-0/sort-like/type-/duration_type-1/resolution_type-?from=articleListPage">小于1分钟</a>
+                                </li>
+                                <li>
+                                    <a href="/channel/index/id-0/sort-like/type-/duration_type-2/resolution_type-?from=articleListPage">1-5分钟</a>
+                                </li>
+                                <li>
+                                    <a href="/channel/index/id-0/sort-like/type-/duration_type-3/resolution_type-?from=articleListPage">5-10分钟</a>
+                                </li>
+                                <li>
+                                    <a href="/channel/index/id-0/sort-like/type-/duration_type-4/resolution_type-?from=articleListPage">10-30分钟</a>
+                                </li>
+                                <li>
+                                    <a href="/channel/index/id-0/sort-like/type-/duration_type-5/resolution_type-?from=articleListPage">30分钟以上</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                <li class="icon-arrow-down morechooce-item">更多筛选
+                    <div class="common-hover-wrap">
+                        <div class="hover-box btnDnN">
+                            <div class="title fs_12 fw_500 c_b_9">清晰度</div>
+                            <ul class="select-list clearfix click-type">
+                                <li class="selected" data-type="resolution_type" data-id="0"><i></i>全部</li>
+                                <li data-type="resolution_type" data-id="2K"><i></i>2K</li>
+                                <li data-type="resolution_type" data-id="4K"><i></i>4K</li>
+                            </ul>
+                            <div class="title fs_12 fw_500 c_b_9">作品类型</div>
+                            <ul class="select-list clearfix click-type">
+                                <li data-type="type" data-id="0"><i></i>全部</li>
+                                <li data-type="type" data-id="vr"><i></i>VR作品</li>
+                                <li data-type="type" data-id="vertical"><i></i>竖屏</li>
+                            </ul>
+                            <div class="btn click-btn">确定</div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="channel-con">
+        <ul class="video-list">
+            {% for post in posts %}
+            <li class="enter-filmplay" data-articleid="{{post.pid}}" data-videourl="ArticleList">
+                <a class="video-cover" href="javascript:;">
+                    <img class="lazy-img"
+                         _src="{{post.thumbnail}}">
+                    <span class="duration fs_12">{{post.durations}}</span>
+                    <div class="video-cover-con">
+                        <div class="video-mark">
+                            <div class="list-tags">
+                            </div>
+                        </div>
+                        <!-- <p class="fs_12"> - </p> -->
+                    </div>
+                    <div class="video-hover-con">
+                        <div class="fs_12 fw_300 c_w_f desc line-hide-3">
+                            {{post.description}}
+                        </div>
+                        <p class="fs_12">{{post.created_at}} 发布</p>
+                    </div>
+                </a>
+                <div class="video-con">
+                    <div class="video-con-top">
+                        <a href="javascript:;">
+                            <p class="fs_14 fw_600 c_b_3 line-hide-1">{{post.title}}</p>
+                        </a>
+                        <div class="new-cate">
+							<span class="fs_12 fw_300 c_b_9">{{post.category}}</span>
+                            <span class="i-icon v-center"></span>
+
+                        </div>
+                        <div class="video-view fs_12 fw_300 c_b_9">
+                            <span class="fw_300 icon-play-volume">{{post.readable_play_counts}}</span>
+                            <span class="fw_300 c_b_9 icon-like">{{post.readable_like_counts}}</span>
+                        </div>
+                    </div>
+                    <div class="user-info">
+                    {% if post.composers|length <= 1 %}
+                        <a class="user-link v-center enter-creator-space" href="javascript:;" data-userid="{{post.composers.0.cid}}">
+							<span class="head-wrap" data-userid="{{post.composers.0.cid}}">
+                                <img class="avator v-center" src="{{post.composers.0.avatar}}">
+                                <span class="author-v yellow-v"></span>
+							</span>
+                            <span class="name fs_12 fw_300 c_b_3 v-center line-hide-1">{{post.composers.0.name}}</span>
+                        </a>
+                        <span class="role fs_12 fw_300 c_b_9 v-center line-hide-1">{{post.composers.0.roles}}</span>
+                    {% else %}
+                    <a class="user-link v-center no-creator-space" href="javascript:;" data-userid="{{post.composers.0.cid}}">
+							<span class="authors-head-wrap" data-userid="{{post.composers.0.cid}}">
+                            {% if post.composers|length == 2 %}
+                                <img class="half half-l" src="{{post.composers.0.avatar}}" alt="">
+                                <img class="half half-r" src="{{post.composers.1.avatar}}" alt="">
+                            {% elif post.composers|length == 3%}
+                                <img class="half half-l" src="{{post.composers.0.avatar}}" alt="">
+                                <img class="quarter quarter-t-r" src="{{post.composers.1.avatar}}" alt="">
+                                <img class="quarter quarter-b-r" src="{{post.composers.2.avatar}}" alt="">
+                            {% else %}
+                                <img class="quarter quarter-t-l" src="{{post.composers.0.avatar}}" alt="">
+                                <img class="quarter quarter-t-r" src="{{post.composers.1.avatar}}" alt="">
+                                <img class="quarter quarter-b-l" src="{{post.composers.2.avatar}}" alt="">
+                                <img class="quarter quarter-b-r" src="{{post.composers.3.avatar}}" alt="">
+                            {% endif %}
+							</span>
+							<span class="name fs_12 fw_300 c_b_3 v-center line-hide-1">
+                                {{post.composers|length}}位创作人
+                            </span>
+						</a>
+                    <div class="authors-wrap">
+							<ul class="authors-list">
+                                {% for composer in post.composers %}
+                                <li class="head-wrap" data-userid="{{composer.cid}}">
+									<a href="/u{{composer.cid}}" target="_blank">
+										<span class="avator-wrap">
+											<img class="avator" src="{{composer.avatar}}" alt="">
+                                            <span class="{{composer.verified}}"></span>
+																					</span>
+										<div class="info">
+											<p class="name fs_12 fw_300 c_b_3 line-hide-1">{{composer.name}}</p>
+											<div class="roles fs_12 fw_300 c_b_9 line-hide-1">{{composer.roles}}</div>
+										</div>
+									</a>
+								</li>
+                                {% endfor %}
+                            </ul>
+						</div>
+                    {% endif %}
+                    </div>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+        <div class="page-wrap">
+            <div class="page">
+                {% if posts.has_previous %}
+                    <a href="/list/{{posts.previous_page_number}}/" title="上一页">
+                        <span class="arrow-page icon-arrow-left"></span></a>
+                {% endif %}
+                {% for page in display_pages %}
+                    {% if page == cur_page %}
+                        <span class="current">{{page}}</span>
+                    {% else %}
+                        <a href="/list/{{page}}/">{{page}}</a>
+                    {% endif %}
+                {% endfor %}
+
+                {% if posts.has_next %}
+                    <a href="/list/{{posts.next_page_number}}/" title="下一页">
+                     <span class="arrow-page icon-arrow-right"></span>
+                 </a>
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+    <!-- 写死的广告位 -->
+    <div>
+        <h2 class="block-title" style="font-size: 20px; font-weight: 600; color: #333; margin: 40px 0 20px;">更多发现</h2>
+        <ul class="video-list">
+            <li>
+                <a class="video-cover" href="https://edu.xinpianchang.com/course/104?from=channellist">
+                    <img class="lazy-img lazy-img-show" _src=""
+                         src="//oss-xpc0.xpccdn.com/Upload/edu/2019/05/165cdd507785fbb.jpg@540w_324h_1e_1c.jpg">
+                </a>
+                <div class="video-con">
+                    <div class="video-con-top">
+                        <a href="https://edu.xinpianchang.com/course/104?from=channellist" style="margin-bottom:12px;">
+                            <p class="fs_14 fw_600 c_b_3 line-hide-1">剪辑大师课：奥斯卡最佳剪辑师的剪辑思路与技巧</p>
+                        </a>
+                        <div class="fs_12 fw_300 c_b_9" style="color:#333;">
+                            精品课程
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <a class="video-cover" href="https://edu.xinpianchang.com/course/84?from=channellist">
+                    <img class="lazy-img lazy-img-show" _src=""
+                         src="//oss-xpc0.xpccdn.com/Upload/edu/2019/04/105cad940faa8b1.png@540w_324h_1e_1c.jpg">
+                </a>
+                <div class="video-con">
+                    <div class="video-con-top">
+                        <a href="https://edu.xinpianchang.com/course/84?from=channellist" style="margin-bottom:12px;">
+                            <p class="fs_14 fw_600 c_b_3 line-hide-1">给剪辑工作者的4堂进阶课</p>
+                        </a>
+                        <div class="fs_12 fw_300 c_b_9" style="color:#333;">
+                            精品课程
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <a class="video-cover" href="https://edu.xinpianchang.com/subject/74?from=channellist">
+                    <img class="lazy-img lazy-img-show" _src=""
+                         src="//oss-xpc0.xpccdn.com/Upload/edu/2019/01/045c2f1679beb1b.jpg@540w_324h_1e_1c.jpg">
+                </a>
+                <div class="video-con">
+                    <div class="video-con-top">
+                        <a href="https://edu.xinpianchang.com/subject/74?from=channellist" style="margin-bottom:12px;">
+                            <p class="fs_14 fw_600 c_b_3 line-hide-1">70天剪辑实战培训班（第六期）</p>
+                        </a>
+                        <div class="fs_12 fw_300 c_b_9" style="color:#333;">
+                            精品课程
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <a class="video-cover" href="https://edu.xinpianchang.com/subject/35?from=channellist">
+                    <img class="lazy-img lazy-img-show" _src=""
+                         src="//oss-xpc0.xpccdn.com/Upload/edu/2018/04/175ad5ce1712d39.jpeg@540w_324h_1e_1c.jpg">
+                </a>
+                <div class="video-con">
+                    <div class="video-con-top">
+                        <a href="https://edu.xinpianchang.com/subject/35?from=channellist" style="margin-bottom:12px;">
+                            <p class="fs_14 fw_600 c_b_3 line-hide-1">线下电商短视频广告课</p>
+                        </a>
+                        <div class="fs_12 fw_300 c_b_9" style="color:#333;">
+                            精品课程
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+<script type="text/javascript">
+	var curCateid = '0',
+		site_url = 'https://www.xinpianchang.com/',
+		sort = 'like',
+		id = '0',
+		type = '',
+		resolution_type = '',
+		duration_type = '0';
+
+
+	$(function() {
+		$(".detail-type li").hover(function() {
+			$(this).find(".common-hover-wrap").addClass("visible");
+			$(".hover-box .list").show();
+			$(this).find(".btnDnN").show();
+		}, function() {
+			$(this).find(".common-hover-wrap").removeClass("visible");
+		})
+	});
+
+	$(function() {
+
+		var filterTypeCollect = ['id', 'sort', 'resolution_type', 'duration_type', 'type'],
+		obj = {
+			'id': id,
+			'duration_type': duration_type,
+			'resolution_type': resolution_type,
+			'type': type + '',
+			'sort': sort
+		};
+
+		$(".click-type li").on('click', function() {
+
+			var _this = $(this),
+				filterActionType = _this.data('type'),
+				filterActionValue = _this.data('id');
+
+			obj[filterActionType] = filterActionValue + '';
+			$(_this).addClass("selected").siblings().removeClass("selected");
+
+		});
+		$(".hover-box .list li").on('click',function() {
+			var _this = $(this);
+			$(".hover-box .durationList").hide();
+			// $(".choose-bar-v3 .choose-bar-bottom .detail-type > li > span").text($(this).find('a').text());
+		})
+		$(".click-btn").click(function() {
+			$(".btnDnN").hide();
+			directer();
+		});
+
+
+		function directer() {
+			var objStr = {};
+			filterTypeCollect.forEach(function(elem){
+
+				objStr[elem] = obj[elem] ? '&'+ elem +'=' + obj[elem] : '';
+
+			})
+			var url = '/index.php?app=channel&ac=index' + objStr.id + objStr.duration_type + objStr.resolution_type + objStr.type + objStr.sort;
+			// id=0&duration_type=0&resolution_type=2K&type=vr
+			self.location = url;
+		}
+	})
+
+</script>
+{% endblock %}

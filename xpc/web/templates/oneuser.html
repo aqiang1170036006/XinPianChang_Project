@@ -1,0 +1,38 @@
+<div class="creator-wrap">
+    <a class="creator-cover" href="/u{{composer.cid}}" data-userid="{{composer.cid}}" target="_blank">
+        <img class="lazy-img" _src="{{composer.avatar}}">
+        <span class="avator-hover"></span>
+        <span class="{{composer.verified}}"></span>
+    </a>
+    <div class="creator-con">
+        <a href="/u{{composer.cid}}" target="_blank"><p class="title fs_14 fw_600 c_b_26 line-hide-1"
+                                                    data-userid="{{composer.cid}}">{{composer.name}}</p></a>
+        <div class="info fw_300 c_b_9 line-hide-1">
+            <div class="profession-wrap">
+                <span class="fs_12 v-center">{{composer.career}}</span> <span class="slash-icon v-center">/</span></div>
+            <span class="fs_12 line-hide-1">{{composer.location}}</span></div>
+    </div>
+    <div class="desc fs_12 fw_300 c_b_9 line-hide-2">{{composer.intro}}</div>
+    <ul class="excellent-video">
+        {% for post in composer.two_posts %}
+        <li>
+            <a href="/a{{post.pid}}?from=UserWindow" target="_blank">
+                <img class="lazy-img"
+                     _src="{{post.thumbnail}}">
+                <div class="duration-wrap">
+                    <span class="fs_12">{{post.durations}}</span>
+                </div>
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+    <div class="excellent-info clearfix">
+        <div class="info-left fs_12 c_b_3">
+            <span class="fw_300">粉丝</span><span class="fw_600 c_b_3 counts fan-counts">{{composer.fans_counts}}</span><i
+                class="i-icon v-center"></i>
+            <span class="fw_300">关注</span><span class="fw_600 c_b_3 counts follow-counts">{{composer.follow_counts}}</div>
+        <div class="info-right fs_12 c_w_f bg-red card-follow follow-btn " data-userid="{{composer.cid}}"
+             data-username="HOGO">关注
+        </div>
+    </div>
+</div>

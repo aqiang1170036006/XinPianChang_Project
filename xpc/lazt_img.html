@@ -1,0 +1,19 @@
+<html>
+<head>
+
+    <title>lazy load</title>
+</head>
+
+<body>
+<img _src="http://oss-xpc0.xpccdn.com/Upload/edu/2019/05/165cdd507785fbb.jpg@540w_324h_1e_1c.jpg" />
+
+<script type="javascript">
+    var imgs = document.getElementsByTagName('img');
+    for (var i=0;i<imgs.length;i++) {
+        imgs[i].src = imgs[i].getAttribute('_src');
+    }
+
+</script>
+</body>
+
+</html>

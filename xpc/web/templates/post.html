@@ -1,0 +1,2459 @@
+{% extends "base.html" %}
+{% block title %}{{post.title}}{% endblock %}
+{% block content %}
+
+<script src="https://www.xinpianchang.com/app/article/js/video.js?v=1551958480"></script>
+<script type="text/javascript" src="https://www.xinpianchang.com/public/js/xpcPlayer.js?v=1556616957"></script>
+<link rel="stylesheet" type="text/css"
+      href="https://www.xinpianchang.com/app/article/skins/filmplay_new.css?v=1557739998">
+<!-- <link rel="stylesheet" type="text/css" href="https://www.xinpianchang.com/app/article/skins/video-js.css?v=1540194468">
+<link rel="stylesheet" type="text/css" href="https://www.xinpianchang.com/app/article/skins/skins/vim.css?v=1540194468">
+<link rel="stylesheet" type="text/css" href="https://www.xinpianchang.com/app/article/skins/skins/filmplay-loading.css?v=1540194468"> -->
+<link rel="stylesheet" href="https://www.xinpianchang.com/public/js/comment/css/rl_exp.css?v=1540194470"/>
+<link rel="stylesheet" type="text/css"
+      href="https://www.xinpianchang.com/app/article/skins/whistleblowing_popup.css?v=1549093323">
+<!-- <script type="text/javascript" src="http://player.youku.com/jsapi"></script> -->
+<!-- <script type="text/javascript" src="../../..https://www.xinpianchang.com/public/js/flowplayer-3.2.13.min.js"></script> -->
+<script>
+	commentFocusFlag = true;
+	// var origins = ;
+	// var isTranscoding = 0;
+	// console.log(origins);
+	$(function(){
+		var player = new XPCU.Player('xpcplayer',{
+			params: {
+				expand : "resource",
+                usage : "xpc_web"
+			},
+	      	vid: "{{post.vid}}",
+	      	width: 960,
+	      	height: 540,
+	      	staticDomain: "http://www.xinpianchang.com",
+	      	requireDomain: "https://openapi-vtom.vmovier.com",
+	      	cover: '{{post.banner}}',
+	      	callback: function(data) {
+
+	      		var cover = data.video.cover.split('@')[0];
+	      		var _playbox = $('.play-box');
+
+      			if (/cs/.test(cover) && !/@/.test(cover)) {
+	      			var coverBlur = cover + '@960w_540h_50-30bl_1e_1c';
+	      			_playbox.css('backgroundImage', 'url(' + coverBlur+ ')').data('src', coverBlur);
+	      		}
+	      	}
+		});
+
+		$(window).on("scroll", function() {
+			var scrollTop = $(window).scrollTop();
+			if (scrollTop > $(".banner-wrap").height()) {
+				$(".fixed-2017-amimate").addClass("show");
+			} else {
+				$(".fixed-2017-amimate").removeClass("show");
+			}
+		});
+
+		$('#xpcplayer').on('contextmenu', function() {
+			return false;
+		});
+	})
+
+	var xpcAppOrigin = 'https://app.xinpianchang.com';
+	$.ajax({
+        url: xpcAppOrigin + '/collect/check',
+        type: 'GET',
+        data: {
+        	article_id: '{{post.pid}}'
+        },
+        xhrFields: {withCredentials: true},
+        crossDomain: true,
+        success: function (data) {
+        	if (data.data.is_collected) {
+        		$('.collection-star').addClass('yello-star');
+            	$('.collection-star').parent().find('.collection-text').text('已收藏');
+        	} else {
+        		var localCollectArticleId = localStorage.getItem('collectArticleId');
+
+              	if (localCollectArticleId) {
+                	setTimeout(function(){
+              			$('.collection-star').click();
+              		},500)
+                	localStorage.removeItem('collectArticleId');
+              	}
+              	stat.track('articleCollect',{
+	                collected: 2,
+	                article_id: localCollectArticleId
+	            });
+
+        	}
+            // if (result.success) {
+            //     $('.cart-count').text(result.data.sum).show();
+            // }
+        },
+        error: function (xhr, status) {
+            if (xhr.responseJSON && xhr.responseJSON.msg) {
+                // resource.xpcAlert(xhr.responseJSON.msg, true);
+            } else if (status != 'abort') {
+                // resource.xpcAlert('网络错误', true);
+            }
+        }
+    });
+
+</script>
+<script src="https://www.xinpianchang.com/app/user/js/collect.js?v=1549960950"></script>
+
+<style>
+	.vsns{width:100%;min-width: 1180px;}
+	.video{width: 960px;height: 580px;}
+
+
+</style>
+<div class="filmplay-container">
+    <div class="play-box" style="background: no-repeat; background-size: cover; background-position: center;">
+        <div class="banner-linear">
+            <div class="filmplay">
+                <div class="film-main banner-wrap">
+                    <div id="xpcplayer" style="width: 960px;height: 540px;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="filmplay-detail clearfix">
+        <div class="filmplay-detail-left">
+            <div class="filmplay-info">
+                <div class="filmplay-info-common left-section">
+                    <div class="video-mark">
+
+                        <a class="pick-wrap" href="https://www.vmovier.com/52699" target="_blank">
+                            <span class="pick vmovier"><svg width="24" height="24" viewBox="0 0 60 60" version="1.1"
+                                                            xmlns="http://www.w3.org/2000/svg"
+                                                            xmlns:xlink="http://www.w3.org/1999/xlink"><g id="Page-1"
+                                                                                                          stroke="none"
+                                                                                                          stroke-width="1"
+                                                                                                          fill="none"
+                                                                                                          fill-rule="evenodd"><g
+                                    id="web切片" transform="translate(-836.000000, -489.000000)"><g id="Group-4-Copy-3"
+                                                                                                  transform="translate(836.000000, 489.000000)"><path
+                                    d="M30,60 C46.5685425,60 60,46.5685425 60,30 C60,13.4314575 46.5685425,0 30,0 C13.4314575,0 0,13.4314575 0,30 C0,46.5685425 13.4314575,60 30,60 Z"
+                                    id="Oval" fill="#000000" fill-rule="nonzero"></path><path
+                                    d="M48.862785,35.7141055 L50.4894847,39.0387973 L53.585081,37.7817071 C52.9140489,39.6724171 52.0276967,41.4616319 50.9304486,43.1116534 L47.7979825,43.3668412 L47.3658673,39.1170935 C47.9720084,38.0412447 48.4704893,36.901599 48.862785,35.7141055 Z M12.6336902,39.1165136 L12.2015751,43.3677112 L9.06910893,43.1110734 C7.97333569,41.461052 7.08550866,39.6732871 6.41447659,37.7811271 L9.51154765,39.0382173 L11.1367726,35.7135255 C11.5290682,36.9024689 12.029024,38.0421147 12.6336902,39.1165136 Z M10.4950889,33.1767263 L8.67519099,37.0103438 L5.75067103,35.5749121 C5.28168599,33.7016013 5.00589918,31.754344 5,29.73749 L7.53959827,32.0211313 L10.1824322,29.2140649 C10.1780078,29.3677576 10.1573607,29.5171005 10.1573607,29.6707932 C10.1573607,30.8684362 10.2841931,32.0385305 10.4950889,33.1767263 Z M17.3418282,11.25 L15.653187,14.5949908 L11.862962,16.4132042 L13.0590213,12.8173754 L17.3418282,11.25 Z M12.2766422,20.9208947 L8.48051795,22.9015004 L6.94378079,20.1379319 C7.72247294,18.3153687 8.7386072,16.6174995 9.916969,15.0486742 L10.5762027,18.3168186 L14.5419284,17.4323607 C13.664425,18.5067596 12.9108044,19.6783038 12.2766422,20.9208947 Z M10.3769578,26.9252039 L7.41704274,29.9323607 L5.09866384,27.6951172 C5.25351739,25.7725087 5.62074153,23.9107973 6.19886146,22.1389817 L7.94207002,24.8764514 L11.3341002,23.0930363 C10.8901867,24.3196779 10.5672064,25.5999669 10.3769578,26.9252039 Z M13.9343126,41.1074138 C14.8250892,42.321006 15.8530219,43.4287533 16.9974634,44.4103566 L17.4782468,48.1888767 L14.1997758,48.75 C12.754476,47.5857054 11.4581305,46.2546688 10.3092647,44.8061877 L13.5316934,44.8902837 L13.9343126,41.1074138 Z M52.4604017,32.0212763 L55,29.737635 C54.9941008,31.7530391 54.718314,33.7017463 54.249329,35.5750571 L51.324809,37.0090389 L49.5049111,33.1768713 C49.7158069,32.0386755 49.8426393,30.8685812 49.8426393,29.6694882 C49.8426393,29.5157955 49.8219922,29.3664527 49.8175678,29.2142099 L52.4604017,32.0212763 Z M47.7235053,20.9208947 C47.0893431,19.6783038 46.3357225,18.5067596 45.458219,17.4323607 L49.4239448,18.3168186 L50.0831785,15.0486742 C51.2615403,16.6174995 52.2776745,18.3153687 53.0563667,20.1379319 L51.5196295,22.9015004 L47.7235053,20.9208947 Z M48.6654573,23.0937612 L52.0589623,24.8771763 L53.8006961,22.1382567 C54.378816,23.9100724 54.7460402,25.7732337 54.9023685,27.6943922 L52.5825148,29.9316358 L49.6225998,26.9259288 C49.4338259,25.6006919 49.1108456,24.3204028 48.6654573,23.0937612 Z M48.1368905,16.4132042 L44.3466655,14.5949908 L42.6580244,11.25 L46.9408312,12.8173754 L48.1368905,16.4132042 Z M46.0658349,41.1074138 L46.4684541,44.8902837 L49.6908828,44.8061877 C48.5420169,46.2546688 47.2456715,47.5857054 45.8003716,48.75 L42.5219007,48.1888767 L43.0026841,44.4103566 C44.1471256,43.4287533 45.1750583,42.321006 46.0658349,41.1074138 Z"
+                                    id="Combined-Shape" fill="#FFFFFF"></path><path
+                                    d="M37.7960982,22.5 L29.9999537,34.9738024 L22.2038555,22.5 L17.5,22.5 L29.9999537,42.5 L42.5,22.5 L37.7960982,22.5 Z M25.0469112,22.5 L29.9798132,30.3926471 L34.9127151,22.5 L25.0469112,22.5 Z"
+                                    id="Page-1" fill="#FFFFFF"></path></g></g></g></svg></span>
+                            <span class="award-con-wrap fs_12 fw_300" style="bottom: 26px;">
+								<span class="award-con">场库推荐</span>
+							</span>
+                        </a>
+                    </div>
+                    <span class="authorize-con"></span>
+                    <div class="title-wrap">
+                        <h3 class="title fs_26 fw_600 c_b_3 short">{{post.title}}</h3>
+
+                    </div>
+                    <div class="filmplay-intro fs_12 fw_300 c_b_9">
+						<span class="cate v-center">
+							<a href="/channel/index/id-61/sort-like" target="_blank">
+								特殊摄影</a>
+								 -
+								<a href="/channel/index/id-62/sort-like" target="_blank">延时</a>
+														</span>
+
+
+                        <span class="update-time v-center"
+                              style="margin:0 20px;"><i>{{post.created_at}}</i></span>
+                        <a class="authority-wrap v-center" href="/aboutus/responsibility?t=5" target="_blank"></a>
+                        <span class="J_whistleblow span_whistleblow">举报</span>
+                    </div>
+                    <div class="filmplay-data">
+                        <div class="filmplay-data-play filmplay-data-info" title="站内播放数">
+                            <span class="icon-play v-center"></span>
+                            <i class="fs_12 fw_300 c_b_6 v-center play-counts"
+                               data-curplaycounts="{{post.play_counts}}">{{post.play_counts}}</i>
+                        </div>
+
+                        <div class="filmplay-data-btn fs_12">
+														<span class="like-btn  v-center">
+								<span class="like-hand icon-like show"></span>
+								<i class="fs_12">喜欢</i>
+								<span class="v-center like-counts fs_12 c_w_f fw_300" data-counts="{{post.like_counts}}">{{post.like_counts}}</span>
+							</span>
+                            <span class="xpc-stat border-btn share-btn show-qr c_b_3 v-center share-host"
+                                  data-event="clickArticleShare">
+																<i class="icon-share chrome-10px-left"></i>
+								<span class="v-center c_b_3 fs_12 fw_600">分享</span>
+
+							</span>
+
+
+                            <span class="border-btn c_b_3 fs_12 fw_600 collection-wrap">
+								<a class="collection-star hollow-star" href="javascript:void(0);"
+                                   data-articleid="{{post.pid}}"></a><em style="font-style:normal"
+                                                                  class="collection-text">收藏</em></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="filmplay-info-desc left-section">
+                    <p class="desc line-hide fs_14 c_b_3 fw_300 line-hide-3">
+                        {{post.description}}
+                         <p class="temp-hide fs_14 c_b_3 fw_300">
+                    {{post.description}}
+                </p>
+                    <div class="more fs_12 fw_600 c_b_9 dn">展开全文</div>
+                </div>
+                <!-- <div class="filmplay-info-equip left-section c_b_3">
+<h3 class="title-item fs_16 fw_600">使用器材</h3>
+<p class="info fs_14 fw_300">大疆精灵第四代   佳能5D Mark IV</p>
+</div> -->
+            </div>
+            <style>
+/* 评论 */
+.common-comment{background-color: #fff; position: relative; margin-bottom: 20px;}
+.common-comment #comment-anchor{position: absolute; height: 90px; position: absolute; width: 100%; top: -90px; visibility: hidden;}
+.common-comment .comment-top{padding: 20px 30px 30px;/* border-bottom: 1px solid #f0f0f0;*/}
+.common-comment .comment-top .input-wrap{margin-top: 20px; position: relative;}
+.common-comment .comment-top .input-wrap .avator-wrap{position: absolute; cursor: pointer; width: 38px; height: 38px;}
+.common-comment .comment-top .input-wrap .input-area{margin-left: 55px;}
+.common-comment .comment-top .input-wrap .input-area textarea{display: block; width: 100%; height: 80px; border-radius: 2px; -webkit-border-radius: 2px; -moz-border-radius: 2px;  background-color: #ffffff; border: solid 1px #e3e4e5; padding: 10px 14px; box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; -ms-box-sizing: border-box; font-size: 14px; color: #333; resize: none; margin-bottom: 14px; transition: .15s ease-in-out; -webkit-transition: .15s ease-in-out; -moz-transition: .15s ease-in-out; -ms-transition: .15s ease-in-out; -o-transition: .15s ease-in-out;}
+.common-comment .comment-top .input-wrap .input-area textarea:focus{border-color: #bbb;}
+.common-comment .comment-top .input-wrap .input-area textarea{outline: none;}
+.common-comment .comment-top .input-wrap .input-area textarea::-webkit-input-placeholder{color: #999; font-size: 14px; font-weight: 300;}
+.common-comment .comment-top .input-wrap .input-area .relpy-wrap{position: relative; padding: 14px 100px 14px 20px; border-radius: 2px; -webkit-border-radius: 2px; -moz-border-radius: 2px;  background-color: #f8f8f8; line-height: 1.8; margin-bottom: 18px;}
+.common-comment .comment-top .input-wrap .input-area .relpy-wrap a{color: #59ACF8;}
+.common-comment .comment-top .input-wrap .input-area .relpy-wrap a:hover{color: #3E94E3;}
+.common-comment .comment-top .input-wrap .input-area .relpy-wrap i.icon-close{position: absolute; font-size: 10px; color: #979797; top: 19px; right: 19px; cursor: pointer;}
+.common-comment .comment-top .input-wrap .input-area .send-comment{float: right; width: 90px; height: 32px; border-radius: 2px; -webkit-border-radius: 2px; -moz-border-radius: 2px;  background-color: #e74b3b; color: #fffefe; text-align: center; line-height: 32px; cursor: pointer; position: relative;}
+.common-comment .comment-top .input-wrap .input-area .send-comment .common-ajax-loading{width: 20px!important; height: 20px!important; margin: -10px 0 0 -10px!important;}
+.common-comment .comment-top .input-wrap .input-area .send-comment .common-ajax-loading:before, .common-comment .comment-top .input-wrap .input-area .send-comment .common-ajax-loading:after{width: 20px!important; height: 20px!important; border-width: 2px!important;}
+.common-comment .comment-top .no-login-wrap{padding-top: 15px; text-align: center;}
+.common-comment .comment-top .no-login-wrap a{cursor: pointer; transition: .15s ease-in-out; -webkit-transition: .15s ease-in-out; -moz-transition: .15s ease-in-out; -ms-transition: .15s ease-in-out; -o-transition: .15s ease-in-out;}
+.common-comment .comment-top .no-login-wrap a:hover{color: #666;}
+
+.common-comment .comment-bottom .comment-list{padding: 0 30px; border-top: 1px solid #f0f0f0; border-bottom: 1px solid #f0f0f0;}
+.common-comment .comment-bottom .comment-list li{position: relative; padding: 20px 0 12px; border-bottom: 1px solid #f0f0f0;}
+.common-comment .comment-bottom li > a{position: absolute; cursor: pointer;}
+.common-comment .comment-bottom li > a .head-wrap{display: block; width: 38px; height: 38px;}
+.common-comment .user-avator{width: 100%; height: 100%; border: solid 1px #f0f0f0; border-radius: 50%; -webkit-border-radius: 50%; -moz-border-radius: 50%;  transition: .15s ease-in-out; -webkit-transition: .15s ease-in-out; -moz-transition: .15s ease-in-out; -ms-transition: .15s ease-in-out; -o-transition: .15s ease-in-out;}
+.common-comment .user-avator:hover{opacity: .5;}
+.common-comment .comment-bottom .comment-list li:last-child{border-bottom: none;}
+.common-comment .comment-bottom .comment-list li .comment-wrap{margin-left: 55px;}
+.common-comment .comment-bottom .comment-list li .comment-wrap .user-name{transition: .15s ease-in-out; -webkit-transition: .15s ease-in-out; -moz-transition: .15s ease-in-out; -ms-transition: .15s ease-in-out; -o-transition: .15s ease-in-out; cursor: pointer;}
+.reply-user-name{transition: .15s ease-in-out; -webkit-transition: .15s ease-in-out; -moz-transition: .15s ease-in-out; -ms-transition: .15s ease-in-out; -o-transition: .15s ease-in-out;}
+.reply-user-name:hover{color: #666;}
+.common-comment .comment-bottom .comment-list li .comment-wrap .user-name:hover{color: #666;}
+.common-comment .comment-bottom .comment-list li .comment-wrap .send-time{margin-left: 10px;}
+.common-comment .comment-bottom .comment-list li .comment-wrap .comment-con{line-height: 1.8; margin-top: 4px;word-wrap: break-word;}
+.common-comment .comment-bottom .comment-list li .comment-wrap .comment-con a{color: #59ACF8; transition: .15s ease-in-out; -webkit-transition: .15s ease-in-out; -moz-transition: .15s ease-in-out; -ms-transition: .15s ease-in-out; -o-transition: .15s ease-in-out;}
+.common-comment .comment-bottom .comment-list li .comment-wrap .comment-con a:hover{color: #3E94E3;}
+
+.common-comment .comment-bottom .comment-list li .comment-wrap .comment-reply-wrap{padding: 14px 20px; background-color: #f8f8f8; border-radius: 2px; -webkit-border-radius: 2px; -moz-border-radius: 2px;  margin: 17px 0 8px;}
+.common-comment .comment-bottom .comment-list li .comment-wrap .comment-reply-wrap .head-wrap{position: static; display: inline-block;}
+/*.common-comment .comment-bottom .comment-list li .comment-wrap .comment-reply-wrap .reply-user-name{line-height: 1;}*/
+.common-comment .comment-bottom .comment-list li .comment-wrap .comment-reply-wrap .reply-con{padding-top: 6px; line-height: 1.8; word-wrap: break-word;}
+.common-comment .comment-bottom .comment-list li .comment-wrap .comment-reply-wrap .reply-con a{color: #59ACF8; transition: .15s ease-in-out; -webkit-transition: .15s ease-in-out; -moz-transition: .15s ease-in-out; -ms-transition: .15s ease-in-out; -o-transition: .15s ease-in-out;}
+.common-comment .comment-bottom .comment-list li .comment-wrap .comment-reply-wrap .reply-con a:hover{color: #3E94E3;}
+.common-comment .comment-bottom .comment-list li .comment-wrap .comment-btn{float: right; margin-top: 10px; line-height: 1;position: absolute;top: 14px;right: 0;}
+.common-comment .comment-bottom .comment-list li .comment-wrap .comment-btn span{display: inline-block; vertical-align: middle; cursor: pointer; transition: .15s ease-in-out; -webkit-transition: .15s ease-in-out; -moz-transition: .15s ease-in-out; -ms-transition: .15s ease-in-out; -o-transition: .15s ease-in-out;}
+.common-comment .comment-bottom .comment-list li .comment-wrap .comment-btn span:hover{color: #333;}
+.common-comment .comment-bottom .comment-list li .comment-wrap .comment-btn span.approved{color: #e74b3b;}
+.common-comment .comment-bottom .comment-list li .comment-wrap .comment-btn span:last-child:after{content: "";}
+.common-comment .comment-bottom  .more-comment{height: 50px; text-align: center; line-height:  50px; cursor: pointer;}
+.common-comment .comment-bottom .more-comment.no-more{color: #e3e4e5; cursor: default; background: #fff!important; height: 50px!important; line-height: 50px!important; padding-bottom: 0;}
+.common-comment .comment-bottom .more-comment.more-btn{color: #999;}
+.common-comment .comment-bottom .comment-empty{text-align: center; padding: 30px 0; color: #e3e4e5; border-top: 1px solid #f0f0f0;}
+.hover-show, .hover-show+.v-center {display: none !important;}
+.common-comment .comment-bottom .comment-list li:hover .hover-show {display: inline !important;}
+.common-comment .comment-bottom .comment-list li:hover .hover-show+.v-center {display: inline-block !important;}
+
+            </style>
+            <div class="common-comment" id="comment-area">
+                <div id="comment-anchor"></div>
+                <div class="comment-top">
+                    <h3 class="fs_20 fw_600 c_b_3">评论&nbsp;<span class="total-counts fs_14 c_b_9"></span></h3>
+                    <div class="input-wrap">
+                        <a class="avator-wrap" href="/u10345093?from=articleList">
+                            <img class="user-avator head-wrap" src="https://oss-xpc0.xpccdn.com/passport/default.png"
+                                 data-userid="10345093">
+                        </a>
+                        <div class="input-area clearfix">
+                            <textarea name="content" id="comment_content" placeholder="请输入评论内容"></textarea>
+                            <div class="relpy-wrap fs_14 fw_300 c_b_9 dn">回复
+                                <span class="reply-user fw_600"></span>&nbsp;
+                                <span class="reply-con"></span>
+                                <i class="icon-close"></i>
+                            </div>
+                            <span class="send-comment fs_12 bg-red">发表评论</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="comment-bottom">
+                    <ul class="comment-list dn">
+                    </ul>
+                    <div class="comment-empty fs_16 dn">还没有人发表评论，来第一个发言吧！</div>
+                    <div class="more-comment fs_14 fw_600 more-btn dn c_b_9">更多</div>
+                </div>
+            </div>
+            <script>
+    var xpcAppOrigin = 'http://test.xinpianchang.com';
+    var uid =  10345093;
+	var curCommentPage = 1;
+	var _topReplyWrap = $(".relpy-wrap"),
+		replyId,
+		replyConText,
+		replyNameText,
+		_commentEmpty = $(".comment-empty"),
+		_moreComment = $(".more-comment"),
+		_filmplayDetailLeft = $(".filmplay-detail-left"),
+		_totalCountsElem = $(".total-counts"),
+        _sendComment = $(".send-comment");
+    var isadmin = '0' == 1;
+    var isPcArticlePage = '{{post.pid}}' ? true : false;
+    var authorId = '10098606' ? '10098606' : '10098606';
+    var _type = isPcArticlePage ? 'article' : 'exp';
+    var _id = isPcArticlePage ? '{{post.pid}}' : '';
+
+    function ajaxError(xhr) {
+        if (xhr.status == 401) {
+            location.href = 'https://passport.xinpianchang.com?mode=quick&callback=https%3A%2F%2Fwww.xinpianchang.com%2Fa{{post.pid}}%3Ffrom%3DArticleList';
+        } else {
+            showDialogTip({
+                error : true,
+                tip : '网络错误'
+            }, function() {
+                //location.reload();
+            });
+        }
+    }
+
+    function ajaxComment(page, status) {
+        _moreComment.html("<span class='common-ajax-loading'></span>");
+		$.ajax({
+			url: xpcAppOrigin + '/comments',
+			type: 'GET',
+			data: {
+				resource_id: _id,
+				type: _type,
+				page: page
+			},
+			xhrFields: {withCredentials: true},
+			crossDomain: true,
+			success: function(res){
+				var commentSum = res.data.total,
+					nextPage = res.data.next_page_url;
+
+				if (res.data.list.length) {
+					_commentEmpty.removeClass("dn");
+					_moreComment.addClass("dn");
+					var commentListData = res.data.list;
+					var listDoc = '';
+					commentListData.forEach(item => {
+						var t = item.addtime;
+						var unixTimestamp = new Date(t * 1000);
+						item.addtime = unixTimestamp.toLocaleString('zh', { hour12: false }).replace(/\//g,'-');
+						listDoc+=_makeCommentList(item)
+					});
+					$(".comment-list").removeClass("dn");
+					if(status) $(".comment-list").append(listDoc);
+					else $(".comment-list").html(listDoc);
+				} else {
+                    if (page == 1) {
+                        $(".comment-list").empty().addClass('dn');
+                        _commentEmpty.removeClass("dn");
+                        _moreComment.addClass("dn");
+                    }
+				}
+				if (page == 1) {
+					_totalCountsElem.text(commentSum);
+				}
+				if (!nextPage && commentSum) {
+					_commentEmpty.addClass("dn");
+					_moreComment.removeClass("more-btn dn").addClass("no-more").text("没有更多了");
+				} else if (nextPage){
+					_commentEmpty.addClass("dn");
+					_moreComment.removeClass("dn").html('更多').data('next',nextPage);
+                }
+                _moreComment[0].flag = false;
+            },
+            error: ajaxError
+		})
+    }
+
+	ajaxComment(curCommentPage);
+
+    $(document).on("click", ".more-btn", function() {
+        if (_moreComment[0].flag) return;
+        _moreComment[0].flag = true;
+        ajaxComment(++curCommentPage,'more');
+    });
+
+    $(document).on("mouseenter", ".creator-info .name", function() {
+    var _parent = $(this).closest(".creator-info");
+        _parent.prev().mouseenter();
+    });
+
+    $(document).on("mouseleave", ".creator-info .name", function() {
+        var _parent = $(this).closest(".creator-info");
+        _parent.prev().mouseleave();
+    });
+
+    $(document).on("mouseenter", ".comment-list .user-name", function() {
+        var _parent = $(this).closest("li");
+        _parent.find("span.head-wrap").mouseenter();
+    });
+
+    $(document).on("mouseleave", ".comment-list .user-name", function() {
+        var _parent = $(this).closest("li");
+        _parent.find("span.head-wrap").mouseleave();
+	});
+
+	// 点击回复评论
+	$(document).on("click", ".relpy-btn", function() {
+		if (!userid) {
+			loginIframe.show();
+		} else {
+
+			setTimeout(function() {
+			  $("#comment_content")[0].focus();
+			}, 0);
+			var _this = $(this),
+				_thisWrap = _this.closest(".comment-wrap"),
+				replyUserElem = _topReplyWrap.find(".reply-user"),
+				replyConElem = _topReplyWrap.find(".reply-con"),
+				commentId = _this.data('commentid');
+
+			replyConText = _thisWrap.find(".comment-con").html();
+			replyNameText = _thisWrap.find(".user-name").html();
+
+			replyId = _this.parent().data("replyid");
+			_sendComment.data('commentid',commentId);
+			replyUserElem.html(replyNameText);
+			replyConElem.html(replyConText);
+			_topReplyWrap.removeClass("dn");
+			location.href  = "#comment-anchor";
+		}
+
+	});
+
+	_topReplyWrap.find(".icon-close").on("click", function() {
+		_topReplyWrap.addClass("dn");
+	});
+
+	// 发表评论
+	var commentFlag = true;
+	_sendComment.on("click", function() {
+		var _this = $(this),
+			textareaElem = $(this).closest(".input-area").find("textarea"),
+			content = textareaElem.val();
+
+		if (content == "") {
+			showDialogTip({
+				error : true,
+				tip : "评论内容不能为空"
+			});
+
+			return;
+		}
+
+		if (commentFlag) {
+			_sendComment.html("<span class='common-ajax-loading'></span>");
+			var isReply = !_topReplyWrap.hasClass("dn");
+			commentFlag = false;
+			var _this = $(this);
+			commentid = _this.data("commentid");
+			var data = {
+				resource_id: _id,
+				type: _type,
+				content: content
+			}
+			if (isReply) {
+				data.comment_id = commentid;
+			}
+			$.ajax({
+				type:'POST',
+				url: xpcAppOrigin + '/comment',
+				data: data,
+				xhrFields: {withCredentials: true},
+				crossDomain: true,
+				success: function(res) {
+					commentFlag = true;
+					_sendComment.text("发表评论").find(".common-ajax-loading").remove();
+					if (res.status == 0) {
+						_commentEmpty.addClass("dn");
+						var unixTimestamp = new Date(res.data.addtime * 1000);
+						res.data.addtime = unixTimestamp.toLocaleString('zh', { hour12: false }).replace(/\//g,'-');
+						var commentList = _makeCommentList(res.data);
+						$(".comment-list").removeClass("dn").prepend(commentList);
+
+						_topReplyWrap.addClass("dn");
+						var newCount = parseInt(_totalCountsElem.text()) + 1;
+						_totalCountsElem.text(newCount);
+						$('.J_comment_count').text(newCount);
+						$("#comment_content").val("");
+						_this.data('commentid', '');
+					} else {
+						showDialogTip({
+							error : true,
+							tip : res.message
+						}, function() {
+                            location.reload();
+                        });
+					}
+                },
+                error: ajaxError
+			});
+		}
+	});
+
+	// 删除本人评论
+	$(".common-comment").on("click", ".del-btn", function() {
+		var _this = $(this),
+			commentid = _this.data("commentid");
+		showSureDialogTip({
+			title : "提示",
+			content :"删除评论后将不可恢复，是否确认删除？",
+			cancel : "取消",
+			sure: "删除评论"
+		},function(){
+			$.ajax({
+				type:'DELETE',
+				url: xpcAppOrigin + '/comment/' + encodeURIComponent(commentid) + '?type=' + _type,
+				xhrFields: {withCredentials: true},
+				crossDomain: true,
+				success: function(res) {
+					commentFlag = true;
+					_sendComment.text("发表评论").find(".common-ajax-loading").remove();
+					if (res.status == 0) {
+						showDialogTip({
+							tip : "删除评论成功"
+						})
+						var listDom = document.getElementsByClassName('comment-list')[0].children;
+						_totalCountsElem.text(parseInt(_totalCountsElem.text()) - 1);
+						if(_totalCountsElem.text()==0) _commentEmpty.removeClass('dn');
+						else _commentEmpty.addClass("dn");
+						if (listDom.length<=10) curCommentPage=1;
+						if (curCommentPage === 1) ajaxComment(curCommentPage);
+						else _this.closest('li').remove();
+						// var commentList = _makeCommentList();
+						// $(".comment-list").removeClass("dn").prepend(commentList);
+
+						_topReplyWrap.addClass("dn");
+						$("#comment_content").val("");
+
+					} else {
+						showDialogTip({
+							error : true,
+							tip : res.message
+						}, function() {
+                            location.reload();
+                        });
+					}
+                },
+                error: ajaxError
+			});
+		})
+
+	});
+
+	//给评论点赞
+	$(document).on('click', '.J_like_comment', function() {
+		var _this = $(this),
+			commentId = _this.closest('.comment-btn').find('.relpy-btn').data('commentid')
+			approved = _this.hasClass('approved') ? 'cancel' : 'approve';
+		likeComment.call(this, commentId, approved);
+	})
+
+	function _makeCommentList(res){
+
+		var commentListObj =
+			'<li>'+
+				'<a href="/u'+ res.userid + '" target="_blank"><span class="head-wrap" data-userid="'+ res.userid +'"><img class="user-avator" src="'+ res.userInfo.avatar +'">'+ (res.userInfo.author_type == 1 || res.userInfo.author_type == 2 ? '<span class="author-v '+ (res.userInfo.author_type == 2 ? 'yellow-v' : 'blue-v') +'"></span>' : '') +'</span></a>'+
+				'<div class="comment-wrap clearfix">'+
+					'<div class="user-time">'+
+						'<a href="/u'+ res.userid + '"><span class="user-name fs_14 fw_600 c_b_3">'+ res.userInfo.username +'</span></a>'+
+						'<span class="send-time fs_12 fw_300 c_b_9">'+res.addtime+'</span>'+
+					'</div>'+
+					'<div class="comment-con fs_14 fw_300 c_b_3">'+ res.content +'</div>'+ (res.referer ?
+					'<div class="comment-reply-wrap">'+
+						'<a class="head-wrap" href="/u'+ res.referer.userid +'" data-userid="'+ res.referer.userid +'"><h3 class="reply-user-name fs_14 fw_600 c_b_3 line-hide-1">'+ res.referer.userInfo.username +'</h3></a>'+
+						'<div class="reply-con fs_14 fw_300 c_b_3">'+ res.referer.content +'</div>'+
+					'</div>' : '') +
+					'<div class="comment-btn fs_12 fw_600 c_b_9" data-replyid="'+ res.id +'">'+((res.userid == uid || isadmin) ?
+						'<span class="del-btn" data-commentid="'+ res.id +'">删除</span><span class="i-icon v-center"></span>': (authorId == uid ? '<span class="del-btn hover-show" data-commentid="'+ res.id +'">删除</span><span class="i-icon v-center"></span>' : '') +
+						'<span class="report-btn J_whistleblow hover-show" data-commentid="'+ res.id +'">举报</span><span class="i-icon v-center"></span>') +
+						'<span class="relpy-btn" data-commentid="'+ res.id +'">回复</span><span class="i-icon v-center"></span>'+
+						'<span class="like-btn J_like_comment'+(res.is_approved?' approved':'')+'"><i class="approve-text">赞</i>&nbsp;<i class="approve-counts">(<i class=counts>'+ res.count_approve +'</i>)</i></span>'+
+					'</div>'+
+				'</div>'+
+			'</li>';
+		return commentListObj;
+	}
+
+	function likeComment(id, status){
+        var _this = $(this);
+        if (_this[0].flag) return;
+        _this[0].flag = true;
+		$.ajax({
+			type: 'POST',
+			url: xpcAppOrigin + '/comment/'+ id +'https://www.xinpianchang.com/approve',
+			data: {
+				type: _type,
+				operate_type: status,
+			},
+			xhrFields: {withCredentials: true},
+			crossDomain: true,
+			success: function(res){
+				if(res.status == 0 && res.data.approveComment){
+					var ctDom = _this.find('.counts');
+					var ct = parseInt(ctDom.text());
+					if(status === 'approve') {
+						_this.addClass('approved');
+						ct++;
+						ctDom.text(ct);
+					} else {
+						_this.removeClass('approved');
+						ct--;
+						ctDom.text(ct);
+                    }
+                    _this[0].flag = false;
+				} else {
+					showDialogTip({
+                        error : true,
+                        tip : res.message
+                    }, function() {
+                        location.reload();
+                    });
+				}
+            },
+            error: ajaxError
+		})
+    }
+
+
+	function _makeForm(reasonArr, type) {
+		var frag = document.createDocumentFragment();
+		var oDivWrapper = document.createElement('div');
+		var oTextarea = document.createElement('textarea');
+		var placeholderText = type === '举报' ? '请说明' + type + '原因（100字以内）':'请说明' + type + '原因（20字以内）';
+		$(oTextarea).addClass('J_textarea_other textarea_other').attr('placeholder',placeholderText);
+		$(oDivWrapper).addClass('reasonWrapper');
+			$.each(reasonArr,function(i,n){
+				var oDiv = document.createElement('div');
+				var em = document.createElement('em');
+				var span = document.createElement('span');
+				var spanText = document.createElement('span');
+				$(em).addClass('selectOuter');
+				$(spanText).addClass('spantext');
+				$(oDiv).addClass('singleReason J_singleReason');
+				em.appendChild(span);
+				oDiv.appendChild(em);
+				oDiv.appendChild(spanText);
+				spanText.innerText = n.text;
+				if( type==='举报' ) oDiv.setAttribute('data-code', n.code);
+				frag.appendChild(oDiv);
+				$(oDivWrapper).append(frag);
+			})
+			oDivWrapper.appendChild(oTextarea);
+			frag = null;
+			return oDivWrapper;
+	}
+	$(document).on('click', '.J_singleReason', function() {
+		$('.selectOuter').removeClass('selected');
+		$('.selectOuter span').removeClass('selected');
+		$('.J_singleReason').removeClass('J_cur');
+		$(this).toggleClass('J_cur');
+		$(this).find('.selectOuter').toggleClass('selected');
+		$(this).find('.selectOuter span').toggleClass('selected');
+	})
+	$(document).on("click", ".J_whistleblow", function() {
+		var _this = $(this),
+			commentid = _this.data("commentid");
+		var _commonNoticeCover = $(".common-notice-cover");
+
+			if (!loginUserid) {
+				loginIframe.show();
+				return false;
+			}
+		// 这里组建弹窗内容
+		var whistleBlowReasonCodeArr = commentid ? [
+			{
+				code:'COMMENT_ILLEGAL',
+				text:'违法违禁'
+			},
+			{
+				code:'COMMENT_POLITICAL',
+				text:'政治敏感'
+			},
+			{
+				code:'COMMENT_OBSCENITY',
+				text:'色情低俗'
+			},
+			{
+				code:'COMMENT_ATTACK',
+				text:'人身攻击'
+			},
+			{
+				code:'COMMENT_TRASH',
+				text:'垃圾广告'
+			},
+			{
+				code:'COMMENT_SPAM',
+				text:'刷屏'
+			},
+			{
+				code:'COMMENT_OTHER',
+				text:'其他问题'
+			}
+		] : isPcArticlePage ? [
+			{
+				code:'ARTICLE_ILLEGAL',
+				text:'违法违禁'
+			},
+			{
+				code:'ARTICLE_POLITICAL',
+				text:'政治敏感'
+			},
+			{
+				code:'ARTICLE_OBSCENITY',
+				text:'色情低俗'
+			},
+			{
+				code:'ARTICLE_VIOLENCE',
+				text:'血腥暴力'
+			},
+			{
+				code:'ARTICLE_VIOLATE',
+				text:'人身攻击'
+			},
+			{
+				code:'ARTICLE_TORT',
+				text:'作品侵权'
+			},
+			{
+				code:'ARTICLE_OTHER',
+				text:'其他问题'
+			}
+        ] : [
+			{
+				code:'EXPERIENCE_ILLEGAL',
+				text:'违法违禁'
+			},
+			{
+				code:'EXPERIENCE_POLITICAL',
+				text:'政治敏感'
+			},
+			{
+				code:'EXPERIENCE_OBSCENITY',
+				text:'色情低俗'
+			},
+			{
+				code:'EXPERIENCE_ATTACK',
+				text:'人身攻击'
+			},
+			{
+				code:'EXPERIENCE_TORT',
+				text:'抄袭或未经授权转载'
+			},
+			{
+				code:'EXPERIENCE_OTHER',
+				text:'其它问题'
+			},
+		];
+
+		var whistleblowReason = _makeForm(whistleBlowReasonCodeArr,'举报');
+		$(".close-sure").addClass('no_close');
+		showSureDialogTip({
+			title : "请选择举报理由",
+            htmlContent : whistleblowReason,
+            cancel : "取消",
+			sure: "确认"
+		}, function(){
+			var curSelected = $('.J_cur'),
+				reportcode = curSelected.data('code'),
+				extReason = $('.J_textarea_other').val();
+				extReason = extReason.replace(/\s+/g,"");
+			if(!curSelected.length) {
+				showDialogTip({tip:'请选择举报理由', error:true, delay:2500});
+				return;
+			}
+			if (extReason.length > 100) {
+				showDialogTip({tip:'最多输入100个字', error:true, delay:2500});
+				return;
+			}
+			if (reportcode == 'COMMENT_OTHER' && extReason.length === 0) {
+				showDialogTip({tip:'请输入理由原因', error:true, delay:2500});
+				return;
+			}
+			var resourceId = commentid ? commentid : _id;
+			var reportData = {
+				resource_type: isPcArticlePage ? commentid ? 2 : 1 : commentid ? 3 : 4,
+				resource_id: resourceId,
+				reason_code: reportcode,
+				ext_reason: extReason
+			}
+			$.ajax({
+				type: "post",
+				url: xpcAppOrigin + '/report',
+				data: reportData,
+				xhrFields: {withCredentials: true},
+            	crossDomain: true,
+				success: function(result){
+					if(!result.status) {
+						showDialogTip({tip:"举报成功，感谢你对社区做出的贡献～", delay:2500});
+						_commonNoticeCover.removeClass("opacity-1");
+						setTimeout(function(){
+							_commonNoticeCover.addClass("dn");
+						},300)
+					}
+					else {
+						showDialogTip({tip:result.message, error:true, delay:2500});
+						_commonNoticeCover.removeClass("opacity-1");
+						setTimeout(function(){
+							_commonNoticeCover.addClass("dn");
+						},300)
+					}
+                },
+                error: ajaxError
+			});
+		})
+
+	});
+
+            </script>
+        </div>
+
+        <div class="filmplay-detail-right">
+
+            <!--创作团队-->
+            <div class="user-team" style="background:#fff; margin-bottom:20px;">
+                <div class="filmplay-creator right-section">
+                    <div>
+                        <h3 class="fs_20 fw_600">本片创作人</h3>
+                        <a href="/index.php?app=user&ac=userverify&ts=intro&from=article_right"
+                           class="btn fs_12 fw_600 c_b_3">你也参与该片创作?</a>
+                    </div>
+
+                    <ul class="creator-list">
+                        {% for composer in post.composers %}
+                        <li>
+                            <a href="/u{{composer.cid}}?from=articleList" target="_black" class="head-wrap"
+                               data-userid="{{composer.cid}}">
+                                <img class="avator lazy-img"
+                                     _src="{{composer.avatar}}">
+                                <span class="{{composer.verified}}"></span>
+                            </a>
+                            <div class="creator-info">
+                                <a class="name-wrap" href="/u{{composer.cid}}?from=articleList"><span
+                                        class="name fs_14 fw_600 c_b_3 line-hide-1">{{composer.name}}</span></a>
+                                <span class="roles fs_12 fw_300 c_b_9">{{composer.roles}}</span>
+                            </div>
+                            <div class="follow-btn fs_12 c_w_f bg-red " data-userid="{{composer.cid}}" data-username="新片场">关注
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div id="user-team-add" class="user-team-add pr hidden">
+                    <!-- <div class="user-team-triangle"></div> -->
+                    <div class="user-team-close dialog-close" id="user-team-close">×</div>
+                    <div id="user-search-box" class="user-search-box">
+                        <div class="user-team-box pr">
+                            <input id="search-input" type="searchch" name="user_search" placeholder="输入成员姓名"/>
+                            <div class="search-list hidden" id="search-list">
+                                <ul>
+                                </ul>
+                                <div class="search-no" id="search-no">用户未入住，点此邀请</div>
+                            </div>
+                        </div>
+                        <div class="user-search mt20 hidden" id="user-search">
+                            <div class="user-avatar">
+                                <a href="" class="author_img">
+                                    <img src="" alt="头像"/>
+                                </a>
+                            </div>
+                            <div class="user-info">
+                                <div class="user-name">
+                                    <span>用户名</span>
+                                    <a href="/index.php?app=user&ac=userverify&ts=intro&from=article_right"
+                                       class="user-v-p-14"></a>
+                                </div>
+                                <div class="user-intro">描述</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="user-search-no" class="user-search-no hidden">
+                        <a id="return" class="return" href="javascript:void(0)"><i
+                                class="icon-arrow-left-light"></i></a>
+                        <p>对方还未加入新片场，您可以发邮件邀请TA</p>
+                        <form method="post" id="email-invite">
+                            <input type="text" name="username" placeholder="对方姓名"/>
+                            <input type="text" name="email" placeholder="邮箱地址"/>
+                        </form>
+                    </div>
+                    <div class="user-team-roles hidden" id="user-team-roles">
+                        <div class="user-team-roles-intro mb10 c999 hidden" id="user-team-roles-intro">
+                            如果你也参与该作品创作，可以选择片中角色，并申请将其列为自己作品。
+                        </div>
+                        <div>片中职务：</div>
+                        <div class="user-team-role">
+                            <ul>
+                                <label style="width: 83px;">
+                                    <input type="checkbox" name="role" value="1"> <span>出品人</span>
+                                </label>
+                                <label style="width: 83px;">
+                                    <input type="checkbox" name="role" value="2"> <span>制片人</span>
+                                </label>
+                                <label style="width: 83px;">
+                                    <input type="checkbox" name="role" value="3"> <span>监制</span>
+                                </label>
+                                <label style="width: 83px;">
+                                    <input type="checkbox" name="role" value="4"> <span>策划</span>
+                                </label>
+                                <label style="width: 83px;">
+                                    <input type="checkbox" name="role" value="5"> <span>导演</span>
+                                </label>
+                                <label style="width: 83px;">
+                                    <input type="checkbox" name="role" value="6"> <span>编剧</span>
+                                </label>
+                                <label style="width: 83px;">
+                                    <input type="checkbox" name="role" value="7"> <span>演员</span>
+                                </label>
+                                <label style="width: 83px;">
+                                    <input type="checkbox" name="role" value="8"> <span>摄影</span>
+                                </label>
+                                <label style="width: 83px;">
+                                    <input type="checkbox" name="role" value="9"> <span>剪辑</span>
+                                </label>
+                                <label style="width: 83px;">
+                                    <input type="checkbox" name="role" value="10"> <span>美术</span>
+                                </label>
+                                <label style="width: 83px;">
+                                    <input type="checkbox" name="role" value="11"> <span>场记</span>
+                                </label>
+                                <label style="width: 83px;">
+                                    <input type="checkbox" name="role" value="12"> <span>灯光</span>
+                                </label>
+                                <label style="width: 83px;">
+                                    <input type="checkbox" name="role" value="13"> <span>道具</span>
+                                </label>
+                                <label style="width: 83px;">
+                                    <input type="checkbox" name="role" value="14"> <span>特效</span>
+                                </label>
+                                <label style="width: 83px;">
+                                    <input type="checkbox" name="role" value="15"> <span>声音设计</span>
+                                </label>
+                                <label style="width: 83px;">
+                                    <input type="checkbox" name="role" value="16"> <span>化妆</span>
+                                </label>
+                                <label style="width: 83px;">
+                                    <input type="checkbox" name="role" value="17"> <span>制作方</span>
+                                </label>
+                                <label style="width: 83px;">
+                                    <input type="checkbox" name="role" value="18"> <span>出品方</span>
+                                </label>
+                                <label style="width: 83px;">
+                                    <input type="checkbox" name="role" value="19"> <span>动画师</span>
+                                </label>
+                                <label style="width: 83px;">
+                                    <input type="checkbox" name="role" value="20"> <span>发行方</span>
+                                </label>
+                                <label style="width: 83px;">
+                                    <input type="checkbox" name="role" value="21"> <span>执行导演</span>
+                                </label>
+                                <label style="width: 83px;">
+                                    <input type="checkbox" name="role" value="22"> <span>录音师</span>
+                                </label>
+                                <label style="width: 83px;">
+                                    <input type="checkbox" name="role" value="23"> <span>制片助理</span>
+                                </label>
+                                <label style="width: 83px;">
+                                    <input type="checkbox" name="role" value="24"> <span>执行制片</span>
+                                </label>
+                                <label style="width: 83px;">
+                                    <input type="checkbox" name="role" value="25"> <span>现场制片</span>
+                                </label>
+                                <label style="width: 83px;">
+                                    <input type="checkbox" name="role" value="26"> <span>生活制片</span>
+                                </label>
+                                <label style="width: 83px;">
+                                    <input type="checkbox" name="role" value="27"> <span>演员副导演</span>
+                                </label>
+                                <label style="width: 83px;">
+                                    <input type="checkbox" name="role" value="28"> <span>摄影指导</span>
+                                </label>
+                                <label style="width: 83px;">
+                                    <input type="checkbox" name="role" value="29"> <span>摄影师</span>
+                                </label>
+                                <label style="width: 83px;">
+                                    <input type="checkbox" name="role" value="30"> <span>跟焦</span>
+                                </label>
+                                <label style="width: 83px;">
+                                    <input type="checkbox" name="role" value="31"> <span>灯光师</span>
+                                </label>
+                                <label style="width: 83px;">
+                                    <input type="checkbox" name="role" value="32"> <span>美术指导</span>
+                                </label>
+                                <label style="width: 83px;">
+                                    <input type="checkbox" name="role" value="33"> <span>化妆师</span>
+                                </label>
+                                <label style="width: 83px;">
+                                    <input type="checkbox" name="role" value="34"> <span>拟音师</span>
+                                </label>
+                                <label style="width: 83px;">
+                                    <input type="checkbox" name="role" value="35"> <span>剪辑师</span>
+                                </label>
+                                <label style="width: 83px;">
+                                    <input type="checkbox" name="role" value="36"> <span>原画师</span>
+                                </label>
+                                <label style="width: 83px;">
+                                    <input type="checkbox" name="role" value="37"> <span>武术指导</span>
+                                </label>
+                                <label style="width: 83px;">
+                                    <input type="checkbox" name="role" value="38"> <span>调色</span>
+                                </label>
+                                <label style="width: 83px;">
+                                    <input type="checkbox" name="role" value="39"> <span>作曲/配乐</span>
+                                </label>
+                                <label style="width: 83px;">
+                                    <input type="checkbox" name="role" value="40"> <span>后期导演</span>
+                                </label>
+                                <label style="width: 83px;">
+                                    <input type="checkbox" name="role" value="41"> <span>造型指导</span>
+                                </label>
+                                <label style="width: 83px;">
+                                    <input type="checkbox" name="role" value="42"> <span>分镜师</span>
+                                </label>
+                                <label style="width: 83px;">
+                                    <input type="checkbox" name="role" value="43"> <span>器材服务</span>
+                                </label>
+                                <label style="width: 83px;">
+                                    <input type="checkbox" name="role" value="44"> <span>配音演员</span>
+                                </label>
+                                <label style="width: 83px;">
+                                    <input type="checkbox" name="role" value="45"> <span>后期制片</span>
+                                </label>
+                                <label style="width: 83px;">
+                                    <input type="checkbox" name="role" value="46"> <span>DIT</span>
+                                </label>
+                                <label style="width: 83px;">
+                                    <input type="checkbox" name="role" value="47"> <span>摄影助理</span>
+                                </label>
+                                <label style="width: 83px;">
+                                    <input type="checkbox" name="role" value="48"> <span>航拍</span>
+                                </label>
+                                <label style="width: 83px;">
+                                    <input type="checkbox" name="role" value="49"> <span>协拍</span>
+                                </label>
+                            </ul>
+                        </div>
+                        <div class="user-role-add mt10 pt10">
+                            <a href="javascript:void(0)" id="post-btn" class="usergz rl-btn needLogin" onclick=""
+                               style="margin-top: 20px;">确定</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="inviting dn">
+                <!-- 已邀请的用户 -->
+                <div class="user-team filmplay-creator" style="background:#fff;padding: 20px; margin-bottom:20px;">
+                    <h3 class="fs_20 fw_600">邀请中</h3>
+                    <ul class="mt20 mb20 creator-list" id="inviting">
+                        <li>
+                            <a href="/u10069015?from=articleList" target="_black" class="head-wrap"
+                               data-userid="10069015">
+                                <img class="avator lazy-img"
+                                     _src="https://cs.xinpianchang.com/Upload/user/2017/08/3059a6888fb07bf.jpeg@80w_80h_1e_1c">
+                                <span class="author-v yellow-v"></span>
+                            </a>
+                            <div class="creator-info" style="width: 276px;">
+                                <a class="name-wrap" href="/u10069015?from=articleList"><span
+                                        class="name fs_14 fw_600 c_b_3 line-hide-1">穆桂永</span></a>
+                                <span class="roles fs_12 fw_300 c_b_9">摄影</span>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="/u10003049?from=articleList" target="_black" class="head-wrap"
+                               data-userid="10003049">
+                                <img class="avator lazy-img"
+                                     _src="https://oss-xpc0.xpccdn.com/Upload/user/2018/10/235bce7968186bd.png@80w_80h_1e_1c">
+                                <span class="author-v blue-v"></span>
+                            </a>
+                            <div class="creator-info" style="width: 276px;">
+                                <a class="name-wrap" href="/u10003049?from=articleList"><span
+                                        class="name fs_14 fw_600 c_b_3 line-hide-1">光本互动</span></a>
+                                <span class="roles fs_12 fw_300 c_b_9">摄影</span>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="/u10112892?from=articleList" target="_black" class="head-wrap"
+                               data-userid="10112892">
+                                <img class="avator lazy-img"
+                                     _src="https://cs.xinpianchang.com//uploadfile/user/2016/09/0157c7cb53f1a0d_180.jpeg@80w_80h_1e_1c">
+                                <span class="author-v yellow-v"></span>
+                            </a>
+                            <div class="creator-info" style="width: 276px;">
+                                <a class="name-wrap" href="/u10112892?from=articleList"><span
+                                        class="name fs_14 fw_600 c_b_3 line-hide-1">杨一尘</span></a>
+                                <span class="roles fs_12 fw_300 c_b_9">摄影</span>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="/u10009686?from=articleList" target="_black" class="head-wrap"
+                               data-userid="10009686">
+                                <img class="avator lazy-img"
+                                     _src="https://cs.xinpianchang.com//uploadfile/user/2015/12/23567a93c14cf10_180.jpeg@80w_80h_1e_1c">
+                                <span class="author-v yellow-v"></span>
+                            </a>
+                            <div class="creator-info" style="width: 276px;">
+                                <a class="name-wrap" href="/u10009686?from=articleList"><span
+                                        class="name fs_14 fw_600 c_b_3 line-hide-1">柳叶刀</span></a>
+                                <span class="roles fs_12 fw_300 c_b_9">摄影</span>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="/u10100556?from=articleList" target="_black" class="head-wrap"
+                               data-userid="10100556">
+                                <img class="avator lazy-img"
+                                     _src="https://cs.xinpianchang.comhttps://www.xinpianchang.com/public/default_head/a_180.jpeg@80w_80h_1e_1c">
+                                <span class="author-v yellow-v"></span>
+                            </a>
+                            <div class="creator-info" style="width: 276px;">
+                                <a class="name-wrap" href="/u10100556?from=articleList"><span
+                                        class="name fs_14 fw_600 c_b_3 line-hide-1">李翔</span></a>
+                                <span class="roles fs_12 fw_300 c_b_9">摄影</span>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="/u10000937?from=articleList" target="_black" class="head-wrap"
+                               data-userid="10000937">
+                                <img class="avator lazy-img"
+                                     _src="https://cs.xinpianchang.com/uploadfile/user/2017/04/20/58f7bf0385655.jpeg@80w_80h_1e_1c">
+                                <span class="author-v yellow-v"></span>
+                            </a>
+                            <div class="creator-info" style="width: 276px;">
+                                <a class="name-wrap" href="/u10000937?from=articleList"><span
+                                        class="name fs_14 fw_600 c_b_3 line-hide-1">伊冉</span></a>
+                                <span class="roles fs_12 fw_300 c_b_9">摄影</span>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="/u10091032?from=articleList" target="_black" class="head-wrap"
+                               data-userid="10091032">
+                                <img class="avator lazy-img"
+                                     _src="https://cs.xinpianchang.com/user_center_xpc_line/user_avatar_10091032.jpg@80w_80h_1e_1c">
+                                <span class="author-v yellow-v"></span>
+                            </a>
+                            <div class="creator-info" style="width: 276px;">
+                                <a class="name-wrap" href="/u10091032?from=articleList"><span
+                                        class="name fs_14 fw_600 c_b_3 line-hide-1">Eric阿怪</span></a>
+                                <span class="roles fs_12 fw_300 c_b_9">摄影</span>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="/u10000399?from=articleList" target="_black" class="head-wrap"
+                               data-userid="10000399">
+                                <img class="avator lazy-img"
+                                     _src="https://cs.xinpianchang.com//uploadfile/user/2015/05/055548a96261e68_180.jpeg@80w_80h_1e_1c">
+                                <span class="author-v yellow-v"></span>
+                            </a>
+                            <div class="creator-info" style="width: 276px;">
+                                <a class="name-wrap" href="/u10000399?from=articleList"><span
+                                        class="name fs_14 fw_600 c_b_3 line-hide-1">杨小树</span></a>
+                                <span class="roles fs_12 fw_300 c_b_9">摄影</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="visit-creator-wrap">
+                <div class="visit-title">
+                    <h3 class="fs_20 fw_600">来访创作人</h3>
+                    <div class="visit-tab">
+                        <span class="recent-tab fs_12 fw_600 c_b_3 select">看过</span>
+                        <span class="like-tab fs_12 fw_600 c_b_3">喜欢</span>
+                    </div>
+                    <div class="creator-contanier recent-creator-contanier">
+                        <ul class="creator-list">
+                            <li>
+                                <a href="/u10061383?from=articleList" target="_blank">
+							<span class="head-wrap" data-userid="10061383">
+								<img class="user-avator"
+                                     src="https://oss-xpc0.xpccdn.com/Upload/user/2018/09/015b8a118412254.png@80w_80h_1e_1c">
+								<span class="author-v blue-v"></span>
+							</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/u10006469?from=articleList" target="_blank">
+							<span class="head-wrap" data-userid="10006469">
+								<img class="user-avator"
+                                     src="https://cs.vmovier.com/Uploads/avatar/2015/01/19/54bc9a4bcb772_180.jpeg@80w_80h_1e_1c">
+								<span class="author-v yellow-v"></span>
+							</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/u10267823?from=articleList" target="_blank">
+							<span class="head-wrap" data-userid="10267823">
+								<img class="user-avator"
+                                     src="https://oss-xpc0.xpccdn.com/Upload/user/2018/09/095b94e6015e2de.jpeg@80w_80h_1e_1c">
+								<span class="author-v yellow-v"></span>
+							</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/u10279696?from=articleList" target="_blank">
+							<span class="head-wrap" data-userid="10279696">
+								<img class="user-avator"
+                                     src="https://oss-xpc0.xpccdn.com/Upload/user/2019/01/115c38736b0c6ca.jpeg@80w_80h_1e_1c">
+								<span class="author-v blue-v"></span>
+							</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/u10000492?from=articleList" target="_blank">
+							<span class="head-wrap" data-userid="10000492">
+								<img class="user-avator"
+                                     src="https://oss-xpc0.xpccdn.com/Upload/user/2018/07/165b4c55dbdf509.jpeg@80w_80h_1e_1c">
+								<span class="author-v yellow-v"></span>
+							</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/u10230164?from=articleList" target="_blank">
+							<span class="head-wrap" data-userid="10230164">
+								<img class="user-avator"
+                                     src="https://oss-xpc0.xpccdn.com/Upload/user/2018/01/225a65a90bda187.jpeg@80w_80h_1e_1c">
+								<span class="author-v yellow-v"></span>
+							</span>
+                                </a>
+                            </li>
+                            <li class="more">
+                                <a href="/article/filmplay/ts-recent_visit/articleid-{{post.pid}}"
+                                   class="icon-arrow-right"></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="creator-contanier like-creator-contanier dn">
+                        <ul class="creator-list">
+                            <li>
+                                <a href="/u10267823?from=articleList" target="_blank">
+							<span class="head-wrap" data-userid="10267823">
+								<img class="user-avator"
+                                     src="https://oss-xpc0.xpccdn.com/Upload/user/2018/09/095b94e6015e2de.jpeg@80w_80h_1e_1c">
+								<span class="author-v yellow-v"></span>
+							</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/u10079259?from=articleList" target="_blank">
+							<span class="head-wrap" data-userid="10079259">
+								<img class="user-avator"
+                                     src="https://cs.xinpianchang.com/Upload/user/2017/09/1059b4da847e746.png@80w_80h_1e_1c">
+								<span class="author-v yellow-v"></span>
+							</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/u10196933?from=articleList" target="_blank">
+							<span class="head-wrap" data-userid="10196933">
+								<img class="user-avator"
+                                     src="https://oss-xpc0.xpccdn.com/passport/avatar/10196933/2019/3/5c9dffc70a564.jpg@80w_80h_1e_1c">
+								<span class="author-v yellow-v"></span>
+							</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/u10098799?from=articleList" target="_blank">
+							<span class="head-wrap" data-userid="10098799">
+								<img class="user-avator"
+                                     src="https://cs.xinpianchang.com/Upload/user/2017/09/2859cc8893532fa.jpeg@80w_80h_1e_1c">
+								<span class="author-v yellow-v"></span>
+							</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/u10579873?from=articleList" target="_blank">
+							<span class="head-wrap" data-userid="10579873">
+								<img class="user-avator"
+                                     src="https://oss-xpc0.xpccdn.com/passport/avatar/10579873/2019/3/5c9591fba1d55.jpg@80w_80h_1e_1c">
+								<span class="author-v yellow-v"></span>
+							</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/u10361134?from=articleList" target="_blank">
+							<span class="head-wrap" data-userid="10361134">
+								<img class="user-avator"
+                                     src="https://oss-xpc0.xpccdn.com/Upload/user/2019/05/275ceb6613e8a71.jpeg@80w_80h_1e_1c">
+								<span class="author-v yellow-v"></span>
+							</span>
+                                </a>
+                            </li>
+                            <li class="more">
+                                <a href="/article/filmplay/ts-recent_like/articleid-{{post.pid}}" class="icon-arrow-right"></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <script>
+$(function() {
+	$(".visit-tab span").on("click", function() {
+		var _this = $(this),
+		index = _this.index();
+		_this.addClass("select").siblings().removeClass("select");
+		$(".visit-creator-wrap .creator-contanier").eq(index).removeClass("dn").siblings(".creator-contanier").addClass("dn");
+	});
+});
+
+            </script>
+
+            <div class="filmplay-recommend right-section">
+                <div>
+                    <h3 class="fs_20 fw_600">创作人的其他作品</h3>
+                    <a href="/u10098606" class="btn fs_12 fw_600 c_b_3">更多</a>
+                </div>
+                <ul class="recommend-list">
+                    {% for p in post.composers.0.posts %}
+                    {% if p.pid != post.pid %}
+                    <li>
+                        <a class="cover-wrap" target="_blank" href="/a{{p.pid}}?from=ArticlePageRecommand">
+                            <img class="cover"
+                                 src="{{p.thumbnail}}">
+                            <span class="cover-con"></span>
+                        </a>
+                        <div class="right-con">
+                            <div class="article-contanier  fenleiNumber" style="width:100%;">
+                                <a target="_blank" href="/a{{p.pid}}?from=article_right"
+                                   class="title fs_14 fw_600 c_b_3 line-hide-2">{{p.title}}</a>
+                                <div href="javascript:;" class="cate-wrap">
+									<span class="fs_12 fw_300 c_b_9 line-hide-1 createFenlei">
+                                        {{p.category}}	</span>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    {% endif %}
+                    {% endfor %}
+
+                </ul>
+            </div>
+            <a target="_blank" href="https://www.xinpianchang.com/activity/creation/id-29"><img
+                    style="width: 100%;margin-bottom: 20px;"
+                    src="https://oss-xpc0.xpccdn.com/Upload/edu/2019/06/035cf4a8b116aa2.jpg" alt=""></a>
+        </div>
+        <!-- 通栏广告 -->
+        <!-- <a class="create-man-banner" href="/activity/filmfest/ts-proposition?utm_source=xpcWeb&utm_medium=tonglan" target="_blank"><img src="https://oss-xpc0.xpccdn.com/Upload/edu/2018/10/095bbc471ee8871.jpg"></a> -->
+    </div>
+    <div class="filmplay-black-box join-creator-wrap dn">
+        <div class="filmplay-inner-box join-creator-box">
+            <div class="like-creator-con creator-con">
+                <span class="close icon-close"></span>
+                <p class="join-tip fs_14 fw_600 c_b_3">如果你也参与了本作品的创作，请选择你在片中担任的职务并申请</p>
+                <ul class="creator-list">
+                    <li>
+                        <i class="select-btn v-center" value="1"></i>
+                        <span class="fs_14 fw_300 c_b_3 v-center">出品人</span>
+                    </li>
+                    <li>
+                        <i class="select-btn v-center" value="2"></i>
+                        <span class="fs_14 fw_300 c_b_3 v-center">制片人</span>
+                    </li>
+                    <li>
+                        <i class="select-btn v-center" value="3"></i>
+                        <span class="fs_14 fw_300 c_b_3 v-center">监制</span>
+                    </li>
+                    <li>
+                        <i class="select-btn v-center" value="4"></i>
+                        <span class="fs_14 fw_300 c_b_3 v-center">策划</span>
+                    </li>
+                    <li>
+                        <i class="select-btn v-center" value="5"></i>
+                        <span class="fs_14 fw_300 c_b_3 v-center">导演</span>
+                    </li>
+                    <li>
+                        <i class="select-btn v-center" value="6"></i>
+                        <span class="fs_14 fw_300 c_b_3 v-center">编剧</span>
+                    </li>
+                    <li>
+                        <i class="select-btn v-center" value="7"></i>
+                        <span class="fs_14 fw_300 c_b_3 v-center">演员</span>
+                    </li>
+                    <li>
+                        <i class="select-btn v-center" value="8"></i>
+                        <span class="fs_14 fw_300 c_b_3 v-center">摄影</span>
+                    </li>
+                    <li>
+                        <i class="select-btn v-center" value="9"></i>
+                        <span class="fs_14 fw_300 c_b_3 v-center">剪辑</span>
+                    </li>
+                    <li>
+                        <i class="select-btn v-center" value="10"></i>
+                        <span class="fs_14 fw_300 c_b_3 v-center">美术</span>
+                    </li>
+                    <li>
+                        <i class="select-btn v-center" value="11"></i>
+                        <span class="fs_14 fw_300 c_b_3 v-center">场记</span>
+                    </li>
+                    <li>
+                        <i class="select-btn v-center" value="12"></i>
+                        <span class="fs_14 fw_300 c_b_3 v-center">灯光</span>
+                    </li>
+                    <li>
+                        <i class="select-btn v-center" value="13"></i>
+                        <span class="fs_14 fw_300 c_b_3 v-center">道具</span>
+                    </li>
+                    <li>
+                        <i class="select-btn v-center" value="14"></i>
+                        <span class="fs_14 fw_300 c_b_3 v-center">特效</span>
+                    </li>
+                    <li>
+                        <i class="select-btn v-center" value="15"></i>
+                        <span class="fs_14 fw_300 c_b_3 v-center">声音设计</span>
+                    </li>
+                    <li>
+                        <i class="select-btn v-center" value="16"></i>
+                        <span class="fs_14 fw_300 c_b_3 v-center">化妆</span>
+                    </li>
+                    <li>
+                        <i class="select-btn v-center" value="17"></i>
+                        <span class="fs_14 fw_300 c_b_3 v-center">制作方</span>
+                    </li>
+                    <li>
+                        <i class="select-btn v-center" value="18"></i>
+                        <span class="fs_14 fw_300 c_b_3 v-center">出品方</span>
+                    </li>
+                    <li>
+                        <i class="select-btn v-center" value="19"></i>
+                        <span class="fs_14 fw_300 c_b_3 v-center">动画师</span>
+                    </li>
+                    <li>
+                        <i class="select-btn v-center" value="20"></i>
+                        <span class="fs_14 fw_300 c_b_3 v-center">发行方</span>
+                    </li>
+                    <li>
+                        <i class="select-btn v-center" value="21"></i>
+                        <span class="fs_14 fw_300 c_b_3 v-center">执行导演</span>
+                    </li>
+                    <li>
+                        <i class="select-btn v-center" value="22"></i>
+                        <span class="fs_14 fw_300 c_b_3 v-center">录音师</span>
+                    </li>
+                    <li>
+                        <i class="select-btn v-center" value="23"></i>
+                        <span class="fs_14 fw_300 c_b_3 v-center">制片助理</span>
+                    </li>
+                    <li>
+                        <i class="select-btn v-center" value="24"></i>
+                        <span class="fs_14 fw_300 c_b_3 v-center">执行制片</span>
+                    </li>
+                    <li>
+                        <i class="select-btn v-center" value="25"></i>
+                        <span class="fs_14 fw_300 c_b_3 v-center">现场制片</span>
+                    </li>
+                    <li>
+                        <i class="select-btn v-center" value="26"></i>
+                        <span class="fs_14 fw_300 c_b_3 v-center">生活制片</span>
+                    </li>
+                    <li>
+                        <i class="select-btn v-center" value="27"></i>
+                        <span class="fs_14 fw_300 c_b_3 v-center">演员副导演</span>
+                    </li>
+                    <li>
+                        <i class="select-btn v-center" value="28"></i>
+                        <span class="fs_14 fw_300 c_b_3 v-center">摄影指导</span>
+                    </li>
+                    <li>
+                        <i class="select-btn v-center" value="29"></i>
+                        <span class="fs_14 fw_300 c_b_3 v-center">摄影师</span>
+                    </li>
+                    <li>
+                        <i class="select-btn v-center" value="30"></i>
+                        <span class="fs_14 fw_300 c_b_3 v-center">跟焦</span>
+                    </li>
+                    <li>
+                        <i class="select-btn v-center" value="31"></i>
+                        <span class="fs_14 fw_300 c_b_3 v-center">灯光师</span>
+                    </li>
+                    <li>
+                        <i class="select-btn v-center" value="32"></i>
+                        <span class="fs_14 fw_300 c_b_3 v-center">美术指导</span>
+                    </li>
+                    <li>
+                        <i class="select-btn v-center" value="33"></i>
+                        <span class="fs_14 fw_300 c_b_3 v-center">化妆师</span>
+                    </li>
+                    <li>
+                        <i class="select-btn v-center" value="34"></i>
+                        <span class="fs_14 fw_300 c_b_3 v-center">拟音师</span>
+                    </li>
+                    <li>
+                        <i class="select-btn v-center" value="35"></i>
+                        <span class="fs_14 fw_300 c_b_3 v-center">剪辑师</span>
+                    </li>
+                    <li>
+                        <i class="select-btn v-center" value="36"></i>
+                        <span class="fs_14 fw_300 c_b_3 v-center">原画师</span>
+                    </li>
+                    <li>
+                        <i class="select-btn v-center" value="37"></i>
+                        <span class="fs_14 fw_300 c_b_3 v-center">武术指导</span>
+                    </li>
+                    <li>
+                        <i class="select-btn v-center" value="38"></i>
+                        <span class="fs_14 fw_300 c_b_3 v-center">调色</span>
+                    </li>
+                    <li>
+                        <i class="select-btn v-center" value="39"></i>
+                        <span class="fs_14 fw_300 c_b_3 v-center">作曲/配乐</span>
+                    </li>
+                    <li>
+                        <i class="select-btn v-center" value="40"></i>
+                        <span class="fs_14 fw_300 c_b_3 v-center">后期导演</span>
+                    </li>
+                    <li>
+                        <i class="select-btn v-center" value="41"></i>
+                        <span class="fs_14 fw_300 c_b_3 v-center">造型指导</span>
+                    </li>
+                    <li>
+                        <i class="select-btn v-center" value="42"></i>
+                        <span class="fs_14 fw_300 c_b_3 v-center">分镜师</span>
+                    </li>
+                    <li>
+                        <i class="select-btn v-center" value="43"></i>
+                        <span class="fs_14 fw_300 c_b_3 v-center">器材服务</span>
+                    </li>
+                    <li>
+                        <i class="select-btn v-center" value="44"></i>
+                        <span class="fs_14 fw_300 c_b_3 v-center">配音演员</span>
+                    </li>
+                    <li>
+                        <i class="select-btn v-center" value="45"></i>
+                        <span class="fs_14 fw_300 c_b_3 v-center">后期制片</span>
+                    </li>
+                    <li>
+                        <i class="select-btn v-center" value="46"></i>
+                        <span class="fs_14 fw_300 c_b_3 v-center">DIT</span>
+                    </li>
+                    <li>
+                        <i class="select-btn v-center" value="47"></i>
+                        <span class="fs_14 fw_300 c_b_3 v-center">摄影助理</span>
+                    </li>
+                    <li>
+                        <i class="select-btn v-center" value="48"></i>
+                        <span class="fs_14 fw_300 c_b_3 v-center">航拍</span>
+                    </li>
+                    <li>
+                        <i class="select-btn v-center" value="49"></i>
+                        <span class="fs_14 fw_300 c_b_3 v-center">协拍</span>
+                    </li>
+                </ul>
+                <div class="join-btn fs_16 fw_600">申请加入</div>
+            </div>
+        </div>
+    </div>
+    <div class="filmplay-black-box play-counts-wrap dn">
+        <div class="filmplay-inner-box play-counts-box">
+            <div class="like-creator-con creator-con">
+                <span class="close icon-close"></span>
+                <p class="fs_14 fw_300 c_b_3 line-hide-1">站外播放量</p>
+                <div class="list-wrap">
+                    <ul class="list network-list">
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="private-ground">
+    <div class="private-container">
+        <div class="private-title">
+            分享视频
+            <span class="private-close">╳</span>
+        </div>
+        <div class="private-content">
+            <div class="private-success">作品的加密链接</div>
+            <div class="private-con">
+                <input class="private-link" onclick="select();" value="" readonly>
+                <span class="private-pwd-tip">提取密码</span>
+                <input class="private-pwd" onclick="select();" value="" readonly>
+                <span class="private-link-copy" id="copy-button" data-clipboard-text="链接： 密码：">复制链接及密码</span>
+                <span class="copy-success">复制成功</span>
+            </div>
+            <p class="private-notice">可以将链接发送给你的微信等好友</p>
+        </div>
+        <div class="private-cancel-content">
+            <span class="cancel-private">关闭加密分享</span>
+            <span class="cancel-private-tip">链接和密码将永久失效</span>
+        </div>
+    </div>
+</div>
+<!-- <div class="fixed-2017 fixed-2017-amimate">
+    <div class="fixed-bg"></div>
+    <div class="qrcode">
+        <img src="//oss-xpc0.xpccdn.com/Upload/boss/2017/12/305a466e9c57659.png" alt="">
+        <p>扫描二维码<br>查看我的2017<br>年度创作报告</p>
+    </div>
+</div> -->
+<span class="create-con" style="position: fixed;
+background: #EFEFEF;
+line-height: 1;
+padding: 5px 10px;
+border-radius: 3px;
+-webkit-border-radius: 3px;
+-moz-border-radius: 3px;
+color: #000;
+font-size: 12px;
+border: 1px solid #D5D5D5;
+display: none;
+z-index: 10000; white-space:nowrap;"></span>
+<!-- 下载弹窗 -->
+<div class="open-window conceal">
+    <div class="open-list">
+        <div class="open-list-top">
+            <span class="open-list-dl">下载</span>
+            <span class="close-list"><i class="icon-close"></i></span>
+            <div class="line-bottom"></div>
+        </div>
+        <div class="open-window-detail">
+            <ul class="open-list-detail">
+                <li>下载功能仅对上传者本人可见</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- 弹窗样式 -->
+<style type="text/css">
+
+    .open-window{
+        height:100%;
+        width:100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        position:absolute;
+        top:0px;
+        left:0px;
+        z-index:10002;
+    }
+    .open-list{
+        width: 534px;
+        background-color: #ffffff;
+        position:fixed;
+        top:50%;
+        left:50%;
+        transform: translate(-50%,-50%);
+    }
+    .conceal{
+        display: none;
+    }
+    .open-list-top span.open-list-dl{
+        font-size: 14px;
+        font-weight: 500;
+        margin:14px 20px;
+        display: inline-block;
+    }
+    .open-list-top span.close-list{
+        margin:13px 20px;
+        display: inline-block;
+        float: right;
+    }
+    .icon-font{
+        font-size:18px;
+        font-weight:500;
+    }
+    .close-list{
+        cursor: pointer;
+    }
+    .close-list .icon-close:before{
+    	font-size: 20px;
+    	font-weight:500;
+    }
+    .close-list:hover .icon-close:before{
+    	color:#999;
+    	transition: .15s ease-in-out;
+	    -webkit-transition: .15s ease-in-out;
+	    -moz-transition: .15s ease-in-out;
+	    -ms-transition: .15s ease-in-out;
+	    -o-transition: .15s ease-in-out;
+    }
+    .line-bottom{
+        width: 100%;
+        height: 4px;
+        background-color: #f7f7f7;
+        margin-bottom: 10px;
+    }
+    .open-window-detail{
+        width:100%;
+        padding:0 30px;
+        box-sizing: border-box;
+        text-align: right;
+        position: relative;
+    }
+    .open-list-detail{
+        list-style:none;
+        color:#333333;
+
+    }
+    .open-list-detail li{
+        width:100%;
+        height:64px;
+        margin:0 auto;
+        border-bottom: 1px solid #f0f0f0;
+        line-height:64px;
+    }
+    /*针对新加的仅对作者可见的li样式*/
+    .open-list-detail li:last-child{
+    	width:100%;
+        height:34px;
+        line-height: 34px;
+        background-color:#f7f7f7;
+        font-size:12px;
+        font-weight:300;
+        text-align: left;
+        color: #333333;
+        border:none;
+        margin-bottom: 20px;
+        padding-left: 16px;
+        box-sizing: border-box;
+    }
+    .list-Sone{
+        font-size:14px;
+        font-weight:500;
+        float: left;
+    }
+    .list-Stwo{
+        font-size:12px;
+        font-weight:300;
+        color:#999999;
+        margin-right:20px;
+    }
+    .list-Sthree{
+        font-size:12px;
+        font-weight:500;
+        border-radius: 2px;
+        border: 0.5px solid #999999;
+        padding: 5px 18px;
+        cursor: pointer;
+    }
+    .list-Sthree:hover{
+    	background: #f0f0f0;
+	    transition: .15s ease-in-out;
+	    -webkit-transition: .15s ease-in-out;
+	    -moz-transition: .15s ease-in-out;
+	    -ms-transition: .15s ease-in-out;
+	    -o-transition: .15s ease-in-out;
+    }
+    .open-list-detail li div{
+        height:100%;
+        cursor: pointer;
+    }
+    .oooi{
+    	position: fixed;
+    	top:0;
+    	left:0;
+    }
+    .redNew{
+
+	    position: absolute;
+	    top: -6px;
+	    left: 55px;
+	    padding-left: 0px;
+    }
+    .redNew img{
+    	width: 26px;
+	    height: 12px;
+    }
+    .open-list-detail .bottom-li{
+    	border-bottom: none;
+    }
+
+</style>
+
+<!--@人弹窗-->
+<!-- <div class="at-wrap">
+	<span class="db">输入对方昵称来@TA</span>
+	<ul class="at-list"></ul>
+</div> -->
+<span id="ruler" class="ruler">ruler</span>
+
+<script src="https://www.xinpianchang.com/app/article/js/team.js?v=1540194468"></script>
+<script type="text/javascript" src="https://www.xinpianchang.com/app/article/js/RL-pager.js?v=1546850906"></script>
+<script type="text/javascript" src="https://www.xinpianchang.com/public/js/clipboard.js?v=1543225277"></script>
+<script type="text/javascript">
+    if (!localStorage.getItem("tagnew") || localStorage.getItem("tagnew") == 0) {
+    	$(".redNew").removeClass('dn');
+    } else {
+    	$(".redNew").addClass('dn');
+    }
+	// if (!localstorge.getItem("tagnew") || localstorge.getItem("tagnew"))
+	var siteUrl = 'https://www.xinpianchang.com/';
+	$(".download-btn").click(function(){
+		localStorage.setItem("tagnew", 1);
+		$(".redNew").addClass('dn');
+	    /* 神策统计 */
+		stat.registerEvent('clickDownload1', function(){
+		stat.track("clickDownload1");
+		});
+		/* 神策统计 */
+	    $(".open-window").removeClass("conceal");
+	    $('html').addClass('overflow-hidden');
+	    $('body').addClass('overflow-hidden');
+    })
+	$(".close-list").click(function(){
+		$(".open-window").addClass("conceal");
+		$('html').removeClass('overflow-hidden');
+		$('body').removeClass('overflow-hidden');
+	})
+	$(".list-Sthree").click(function(){
+		var ss = $(this).data('id');
+		var name = $(this).closest("li").find(".list-Sone").text();
+		$.get(
+		  siteUrl+'article/filmplay/ts-video_download?id='+ss,
+		  function(data) {
+		    if (data.status == 1) {
+		      /* 神策统计 */
+		      stat.registerEvent('clickDownload2', function(){
+		        stat.track("clickDownload2", {
+		          "aricleDownloadRatio": name
+		        });
+		      });
+		      /* 神策统计 */
+		      location.href=data.url;
+		    } else {
+		      location.href = "https://passport.xinpianchang.com?callback=https%3A%2F%2Fwww.xinpianchang.com%2Fa{{post.pid}}%3Ffrom%3DArticleList";
+		    }
+		  }
+		)
+	})
+
+	/* 神策统计 */
+	var attrStat = {
+		articlePageFrom: pageFrom,
+		articleName: "这里是中国",
+		articleID: "{{post.pid}}",
+		articleUser: "10098606",
+		articleChannelType: $(".filmplay-intro .cate").text().trim()
+	};
+
+	stat.registerPage(attrStat);
+
+	// 访问页面统计
+	stat.track("articlePageViewed");
+
+	// 首次播放视频
+    // stat.registerEvent('clickArticlePlay', function(){
+    // 	if ($('video').length) {
+    // 		var flag = true;
+    // 		$('video')[0].addEventListener('play', function () {
+    // 	       if (flag) {
+    // 	       	 stat.track("clickArticlePlay");
+    // 	       	 flag = false;
+    // 	       }
+    // 	    }, false);
+    // 	}
+
+    // })
+
+	// 点击喜欢或取消喜欢统计
+	stat.registerEvent('clickArticleLike', function(){
+		var _likeBtn = $('.filmplay-data-btn .like-btn'),
+			flag = _likeBtn.hasClass('liked');
+		_likeBtn.on('click', function() {
+			stat.track("clickArticleLike", {
+				isLike: !flag
+			});
+			flag = !flag;
+		});
+	})
+	/* 神策统计 */
+
+
+	//统计访问数
+	$.post("/article/filmplay/ts-viewed",{aid:{{post.pid}}},function(res) {});
+	var client;
+
+	var _privateGround = $(".private-ground"),
+		_sharedPrivate = $(".private-btn"),
+		_sharedBtnPrivate = $(".shared-btn-private"),
+		_shareBtnPrivate = $(".share-btn-private"),
+		_privateSuccess = $(".private-success");
+
+	// _sharedBtnPrivate.hover(function(){
+	// 	$(this).find("img").attr("src","//cs.vmovier.com/Uploads/Activity/2017-04-11/58ec7ec9b3779.png");
+	// },function(){
+	// 	$(this).find("img").attr("src","//cs.vmovier.com/Uploads/Activity/2017-04-11/58ec7ea023d1f.png");
+	// })
+
+	_sharedPrivate.on("click",function(){
+
+		// $('.share-btn span').text("开启中...");
+		$.post('/index.php?app=article&ac=filmplay&ts=share',{articleid : {{post.pid}},handle : "share"},function(res){
+
+			if(res.data){
+				$(".private-link").val(res.data.link);
+				console.log(res.data.link);
+				$(".private-pwd").val(res.data.pwd);
+				// clipboard
+				$(".private-link-copy").attr("data-clipboard-text","链接：" + res.data.link + " 密码：" + res.data.pwd);
+			}
+
+			client = new ClipboardJS(document.getElementById("copy-button"));
+			client.on('success', function(e) {
+			    $(".copy-success").show();
+			});
+
+
+			privateGroundShow();
+			// _shareBtnPrivate.text("分享中");
+			_sharedPrivate.text("已开启加密分享");
+			$('.share-btn span').text("已开启加密分享");
+			$('.share-btn i').removeClass('icon-link').addClass('icon-linkopen');
+			// _privateSuccess.text("作品的加密链接");
+
+		})
+	})
+
+	$(".cancel-private").on("click",function(){
+		_privateGround.hide();
+
+		showSureDialogTip({
+			title : "提示",
+			content :"是否确认关闭加密分享？之前的链接和密码将永久失效。"
+		},function(){
+			$.post('/index.php?app=article&ac=filmplay&ts=share',{articleid : {{post.pid}},handle : "unshare"},function(res){
+				// _shareBtnPrivate.text("加密分享");
+
+				_sharedPrivate.text("开启加密分享");
+				$('.share-btn span').text("开启加密分享");
+				$('.share-btn i').removeClass('icon-linkopen').addClass('icon-link');
+				$(".copy-success").hide();
+
+			})
+		})
+	})
+
+	$(".show-private").on("click",function(){
+		privateGroundShow()
+	})
+
+	$(".private-close").on("click",function(){
+		_privateGround.hide();
+		$(".copy-success").hide();
+	})
+
+	function privateGroundShow(){
+		_privateGround.show();
+
+
+	}
+
+	function jsCopy(){
+	    var e=document.getElementById("contents");//对象是contents
+	    e.select(); //选择对象
+	    document.execCommand("Copy"); //执行浏览器复制命令
+	}
+
+	var authorid = '10098606',
+		articleid = '{{post.pid}}';
+
+	$(document).on('focus','#comment_content, .J_textarea_other',function(){
+		commentFocusFlag = false;
+	})
+
+	$(document).on('blur','#comment_content, .J_textarea_other',function(){
+		commentFocusFlag = true;
+	})
+
+	$('#xpc_video').on('contextmenu',function(e){
+	   	return false;
+	});
+	closeShow();
+	function closeShow(){
+		$(".showClose").on("click",function(){
+			$(".show").hide();
+			setCookie("show"+articleid,"1");
+		})
+	}
+	function setCookie(name,value){
+		var Days = 30;
+		var exp = new Date();
+		exp.setTime(exp.getTime() + Days*24*60*60*1000);
+		document.cookie = name + "="+ escape (value) + ";expires=" + exp.toGMTString();
+	}
+	function getCookie(name){
+		var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+		if(arr=document.cookie.match(reg))
+		return unescape(arr[2]);
+		else
+		return null;
+	}
+	if(getCookie("show"+articleid) != 1){
+		$(".show").show();
+	}
+	$(".vr-know").on("click",function(){
+		setCookie("vr-tip","1");
+		$(".film-cover").hide();
+	})
+	$(".vr-close").on("click",function(){
+		setCookie("vr-tip","1");
+		$(".no-support-cover").hide();
+	})
+	$(".no-support-cover").on("click",function(){
+		setCookie("vr-tip","1");
+		$(".no-support-cover").hide();
+	})
+	var ua_vr = navigator.userAgent.toLowerCase();
+	if(!getCookie("vr-tip")){
+		if(!/(chrome|edge|firefox)/.test(ua_vr)){
+			$(".no-support-cover").show();
+    	}
+	    else{
+	    	$(".film-cover").show();
+	    }
+	}
+	// 获取总播放数
+	$.post('/index.php?app=article&ac=filmplay&ts=plat_views',{id:'{{post.pid}}'},function(re){
+		if (re) {
+			$(".network-play-counts").text(toThousands(re.out_views));
+		}else{
+			$(".network-play-counts").text(798);
+
+		}
+
+	},'json');
+
+	// 获取站外播放数
+	// $.post(siteUrl+'index.php?app=article&ac=filmplay&ts=plat_views',{id:'{{post.pid}}'},function(re){
+	// 	if (re) {
+	// 		$(".play-counts").text(re.views);
+	// 	}else{
+	// 		$(".play-counts").text(798);
+	// 	}
+
+	// },'json');
+
+	var topBgImgObject = new Image();
+
+	if ($(".play-box").data("src")) {
+		topBgImgObject.src = $(".play-box").data("src");
+
+		topBgImgObject.onload = function() {
+			$(".play-box").removeClass("bg");
+		};
+
+		topBgImgObject.onerror = function() {
+			$(".play-box").removeClass("bg");
+		};
+	}
+
+
+	// var isNewera = '';
+
+	$(".edit-btn").on("click",function(){
+		var isNewera = $(this).data('activityid') == 97 || $(this).data('activityid') == 109;
+					showDialogTip({tip:"该作品正在首页展示中，无法进行编辑操作",error:true});
+			});
+
+
+	var deling = 0;
+	// 违法违禁
+	// 政治敏感
+	// 色情低俗
+	// 血腥暴力
+	// 人身攻击
+	// 作品授权
+	// 缺少汉语字幕
+	// 其他问题
+	var delWorkReasonCodeArr = [
+			{
+				text:'违法违禁'
+			},
+			{
+				text:'政治敏感'
+			},
+			{
+				text:'色情低俗'
+			},
+			{
+				text:'血腥暴力'
+			},
+			{
+				text:'人身攻击'
+			},
+			{
+				text:'作品授权'
+			},
+			{
+				text:'缺少汉语字幕'
+			},
+			{
+				text:'其他问题'
+			}
+		];
+	$(".filmplay-manage .del-btn").bind('click',function(){
+		if(deling){
+			return;
+		}
+					alert("该作品正在首页展示中，无法进行删除操作");
+			});
+
+
+	// 左侧描述和奖项是否收起
+	$(".left-section").on("click", ".more", function() {
+		var _this = $(this),
+			parent = _this.parent(),
+			lineHideElem = parent.find(".line-hide"),
+			arrClassName = lineHideElem.attr("class").split(" "),
+			arrClassNameLength = arrClassName.length,
+			needRemoveClassName = arrClassName[arrClassNameLength - 1];
+
+		lineHideElem.removeClass(needRemoveClassName);
+		_this.remove();
+	});
+
+	if ($(".filmplay-info-desc").length) {
+		computeOver($(".filmplay-info-desc"), 3);
+	}
+
+	if ($(".filmplay-info-award").length) {
+		computeOver($(".filmplay-info-award"), 3);
+	}
+
+	$(".temp-hide").each(function(index, elem) {
+		$(elem).remove();
+	})
+	function computeOver(parentElem, lines) {
+		var hideElem = parentElem.find(".temp-hide"),
+			lineHeight = parseInt(parentElem.find("p").css("line-height"));
+		// Firefox 会比 Chrome 高度多出两个像素
+		if (hideElem.height() > lineHeight * lines + 2) {
+			parentElem.find(".more").removeClass("dn");
+		}
+	}
+	// 右侧创作人是否收起
+	var _creatorListWrap = $(".filmplay-creator");
+	_creatorListWrap.on("click", ".more", function() {
+		var _this = $(this);
+		_creatorListWrap.find(".creator-list li").removeClass("dn");
+		_this.remove();
+	});
+
+	// 申请加入相关
+	//发送邀请 0 用户邀请 1 邮件邀请  2 申请
+	var inviteType;
+	var ing = 0,
+		_joinWrap = $(".join-creator-wrap"),
+		_joinBox = $(".join-creator-box"),
+		_joinBtn = $(".join-creator-btn");
+	_joinBtn.on("click", function() {
+		inviteType = 2;
+		_joinWrap.removeClass("dn");
+	});
+
+	_joinBox.on("click", ".close",function() {
+		$(".join-creator-wrap").addClass("dn");
+	});
+	_joinBox.on("click", ".creator-list li", function() {
+		$(this).find(".select-btn").toggleClass("active");
+	});
+
+	_joinBox.on("click", ".join-btn", function(){
+		if (ing) {return;};
+
+		var role = [],
+			_this = $(this);
+
+
+		$(".creator-list li .active").each(function(index, elem) {
+			role[index] = $(elem).attr("value");
+		});
+		if (role == '') {
+			showDialogTip({
+				error : true,
+				tip : "请选择角色"
+			});
+			return;
+		};
+
+		if (role.length > 5) {
+			showDialogTip({
+				error : true,
+				tip : "职务不能超过5个"
+			});
+			return;
+		}
+
+		var obj = {role: role, articleid: articleid};
+		switch(inviteType){
+			case 0:
+				// obj.userid = $('#user-search-box .user-search .user-avatar').attr('id');
+				var ts = 'invite';
+				break;
+			case 1:
+				// obj.username = $('#email-invite input[name=username]').val();
+				// obj.email = $('#email-invite input[name=email]').val();
+				var ts = 'invite_email';
+				break;
+			case 2:
+				var ts = 'apply';
+				// complete = confirm();
+				break;
+			case 3:
+				//修改
+				// obj.userid = _this.data('userid');
+				var ts = 'change';
+				break;
+		}
+		ing = 1;
+		$.post('/article/team/ts-'+ts,obj,function(re){
+			ing = 0;
+			if (re.status) {
+				_joinWrap.addClass("dn");
+				showDialogTip({
+                    tip : "申请成功"
+                },function(){
+                    _joinBtn.text("申请处理中，联系下他吧").attr("href", _joinBtn.data("url")).off("click");
+                })
+			}else{
+				showDialogTip({tip : re.msg});
+			}
+		},'json');
+	});
+	// 授权信息悬停显示
+	var authorizedType = 1,
+		_authorityWrap = $(".authority-wrap"),
+		_authorizeCon = $(".authorize-con");
+	if (authorizedType != 0) {
+		var authorityArr = [["0"], ["1", "3", "4"], ["1", "3", "2"], ["1", "3"], ["1", "4"], ["1", "2"], ["1"]],
+		authorityTipArr = ["不使用原创授权", "署名-非商业性使用-禁止演绎", "署名-非商业性使用-相同方式共享", "署名-非商业性使用", "署名-禁止演绎", "署名-相同方式共享", "署名"],
+		authorityStr = "";
+		var authorityItem = authorityArr[authorizedType];
+		_authorizeCon.text(authorityTipArr[authorizedType]);
+		for (var i = 0; i < authorityItem.length; i++) {
+			authorityStr += '<i class="authority-item icon-authorization-'+ authorityItem[i] +' v-center"></i>';
+		}
+		_authorityWrap.append(authorityStr);
+	}
+
+	var tipParentOffset = $(".filmplay-info-common").offset();
+	function computeTipPosition(event) {
+		var x = event.pageX;
+		var y = event.pageY;
+		_authorizeCon.css({"left": x - tipParentOffset.left, "top": y - tipParentOffset.top + 20}).show();
+	}
+	_authorityWrap.on("mouseover mousemove", function(e) {
+		computeTipPosition(e);
+	});
+	_authorityWrap.on("mouseout", function(e) {
+		_authorizeCon.hide();
+	});
+
+	var _createCon = $('.create-con');
+	var _createFenlei = $('.createFenlei');
+	function computefLeiPosition(event, elem) {
+		var x = event.pageX;
+		var y = event.pageY;
+		_createCon.text(elem.text()).css({"left": x - (elem.width()) + 30 + 'px', "top": y - $(window).scrollTop()+ 20+'px'}).show();
+	}
+	_createFenlei.on("mouseover, mousemove", function(e) {
+		computefLeiPosition(e, $(this));
+	});
+	_createFenlei.on("mouseout", function(e) {
+		_createCon.hide();
+	});
+
+	// 点击喜欢作品按钮
+	var likeArticleFlag = true;
+	$('.filmplay-data-btn .like-btn').on('click', function(event, s) {
+		if (!userid) {
+			loginIframe.show();
+			// alert("未登录");
+
+		} else {
+			if (!likeArticleFlag) return;
+			likeArticleFlag = false;
+			var _this = $(this),
+				_thisTextElem = _this.find("i"),
+				isLiked = _thisTextElem.text() == "喜欢",
+				likeCountsElem = _this.find(".like-counts"),
+				likeCounts = likeCountsElem.data("counts");
+			var curCounts = isLiked ? ++likeCounts : --likeCounts;
+			likeCountsElem.text(toThousands(curCounts)).data("counts", curCounts);
+			_thisTextElem.text(isLiked ? "已喜欢" : "喜欢");
+			_this.toggleClass("liked");
+			$.post('/index.php?app=article&ac=like', {articleid: articleid, s: s, andLikeUserid: userid}, function(rs) {
+				if(rs.status >= 1){
+					likeArticleFlag = true;
+				} else {
+					showDialogTip({
+						error : true,
+						tip : rs.msg
+					});
+				}
+			},'json');
+		}
+	});
+
+	// 点击站外播放数
+	$(".filmplay-data-network-play").on("click", function() {
+		banPageScroll();
+		$(".play-counts-wrap").removeClass("dn");
+	});
+
+</script>
+<div class="filmplay-black-box space-share-wrap dn">
+    <div class="filmplay-inner-box space-share-box">
+        <div class="space-share-con creator-con">
+            <span class="close icon-close"></span>
+            <p class="fs_14 fw_600 c_b_3 line-hide-1">分享给其他人</p>
+            <div class="space-share-detail clearfix short-height">
+                <div class="space-share-left">
+                    <div id="code-success"></div>
+                    <div class="code-tip fs_12 fw_300 c_b_3">微信扫一扫，分享到朋友圈</div>
+                </div>
+
+                <div class="space-share-right">
+                    <div class="share-tip fs_12 fw_600 c_b_3">分享到其他平台</div>
+                    <link rel="stylesheet" type="text/css"
+                          href="https://www.xinpianchang.com/public/js/share/share.min.css?v=1553685146">
+                    <div class="social-share-container">
+
+                        <div class="social-share"
+                             data-initialized="true"
+                             data-image="{{post.banner}}"
+                             data-url="http://www.xinpianchang.com/a{{post.pid}}?from=ArticleList"
+                             data-weibo-title="这里是中国（分享自@新片场 ）"
+                             data-qzone-title="这里是中国"
+                             data-qzone-description="这个挺不错的~"
+                             data-qzone-summary="这个挺不错的~"
+                             data-douban-title="这里是中国（分享自@新片场 ）">
+                            <!--  <a href="javascript:;" class="social-share-icon icon-wechat icon-weixin"></a> -->
+                            <a href="#" class="social-share-icon icon-weibo"></a>
+                            <a href="#" class="social-share-icon icon-qzone"></a>
+                            <a href="#" class="social-share-icon icon-qq"></a>
+                            <!-- <a href="#" class="social-share-icon icon-douban"></a> -->
+                        </div>
+
+
+                    </div>
+
+                    <!-- <script type="text/javascript" src="https://www.xinpianchang.com/public/js/jquery.qrcode.js?v=1540194470"></script> -->
+                    <script type="text/javascript"
+                            src="https://www.xinpianchang.com/public/js/share/social-share.js?v=1540194470"></script>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://www.xinpianchang.com/public/js/canvas2image.js?v=1540194470" type="text/javascript"></script>
+<script>
+
+	var isNewearParams = "";
+	if (isNewearParams) {
+		if (location.href.indexOf("?") != -1) {
+			isNewearParams = "&" + isNewearParams;
+		} else {
+			isNewearParams = "?" + isNewearParams;
+		}
+	}
+	var avaterActionFlag = false;
+	var curUserid = "10345093";
+	$(".avater-action").on("click",function(){
+		var _this = $(this);
+
+		$(".space-share-detail canvas").remove();
+
+		_this.find("i")[!avaterActionFlag ? 'addClass' : 'removeClass']("no-active");
+		createQrcode(avaterActionFlag);
+
+		avaterActionFlag = !avaterActionFlag;
+
+	})
+
+	var isSpacePage = '';
+
+	$(".show-qr").on("click",function(){
+		if ($(".private-btn").length) {
+			$(".private-btn").click();
+
+		} else {
+			$(".space-share-wrap").removeClass("dn");
+			banPageScroll();
+		}
+	});
+
+	createQrcode(isSpacePage);
+
+	$(".download-qrcode").on("click",function(){
+			exportCanvasAsPNG($("#code-success canvas")[0], 'qrcode.png');
+	});
+
+	function createQrcode(showAvater){
+		if (isSpacePage) {
+			var img = new Image();
+        	var avaterImg  = "?id=1678417964";
+        	var isOtherFace = avaterImg.indexOf('cs.') == -1;
+		}
+
+
+		var ua = navigator.userAgent;
+        var isSafari = ua.indexOf("Safari") > -1 && ua.indexOf("Chrome") == -1;
+
+        if (isSafari || isOtherFace) {
+	        $(".avater-action").hide();
+	    } else if (isSpacePage && !isOtherFace) {
+	    	img.crossOrigin = 'anonymous';
+	    }
+
+		var options = {
+            render: 'canvas',
+            minVersion: 4,
+            background: "#fff",
+            size: 140,
+            radius: 0.5,
+            text: isSpacePage ? location.origin + "/u" + curUserid : (location.href + isNewearParams) ,
+            // quiet: 4,
+
+            mSize: 0.15,
+            mPosX: 0.5,
+            mPosY: 0.5
+        };
+        console.log(options.text);
+        if (isSpacePage) {
+        	if (isOtherFace) {
+        		$('#code-success').empty().qrcode(options);
+        	} else {
+
+	        	options.mode = isSafari ? 0 : (showAvater ? 4 : 0);
+
+        		img.onload  = function() {
+        			options.image = img;
+		            $('#code-success').empty().qrcode(options);
+		        }
+		        img.src = "?id=848849294";
+		    }
+
+        } else {
+        	$('#code-success').empty().qrcode(options);
+        }
+
+
+	}
+
+	function exportCanvasAsPNG(canvas, fileName) {
+        var MIME_TYPE = "image/png";
+        var dlLink = document.createElement('a');
+        dlLink.download = fileName;
+        dlLink.href = canvas.toDataURL("image/png");
+        dlLink.dataset.downloadurl = [MIME_TYPE, dlLink.href].join(':');
+        document.body.appendChild(dlLink);
+        dlLink.click();
+        document.body.removeChild(dlLink);
+    }
+
+
+</script>
+
+{% endblock %}

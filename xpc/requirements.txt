@@ -1,0 +1,6 @@
+scrapy
+pymysql
+redis
+requests
+scrapy-redis
+django
